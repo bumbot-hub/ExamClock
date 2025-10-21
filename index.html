@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ExamClock</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://kit.fontawesome.com/5abe9d46cd.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <section class="left-filler"></section>
+        <h2>ExamClock<span class="logo_square">&#9632;</span></h2>
+
+        <nav>
+            <button class="icon">
+                <i class="fa-solid fa-circle-half-stroke" id="contrast"></i>
+            </button>
+            <button class="icon">
+                <i class="fa-solid fa-sliders" id="settings"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section id="homepage">
+        <h4>Choose mode:</h4>
+
+        <section id="modes">
+            <button class="options" id="clock">Clock</button>
+            <button class="options" id="timer">Timer</button>
+        </section>
+    </section>
+
+    <section id="setting_view" class="hidden">
+        <form>
+            <label>Exam name:</label><input type="text">
+            <label>Examination centre number:</label><input type="text">
+            <label>1st time reminder:</label><input type="number">
+            <label>2nd time reminder:</label><input type="number">
+        </form>
+    </section>
+</body>
+<script src="renderer.js"></script>
+</html>

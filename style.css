@@ -1,0 +1,106 @@
+/* --- Global variables + basic style --- */
+:root {
+    --bg-color: #DFD0C3;
+    --font-color: #121212;
+    --accent-color: #F27938;
+}
+
+* {
+    color: var(--font-color);
+    font-family: "Segoe UI", serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    padding: 0;
+    margin: 0;
+}
+
+body.high_contrast{
+    --bg-color: #FFFFFF;
+    --font-color: #000000;
+    --accent-color: #FF6200;
+}
+
+/* --- Headings --- */
+h2 {
+    margin: 0 auto;
+    font-size: 72px;
+}
+
+h4 {
+    font-size: 54px;
+}
+
+/* --- Sections and structure --- */
+header{
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-right: 64px;
+}
+
+#homepage {
+    margin-top: 128px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#modes {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 64px;
+}
+
+/* --- Top bar --- */
+.logo_square {
+    font-size: 20px;
+    margin-left: 4px;
+    color: var(--accent-color);
+}
+
+.icon {
+    border: none;
+    background: none;
+    font-size: 40px;
+    color: var(--font-color);
+}
+
+.icon:hover > i {
+    color: var(--accent-color);
+    border: none;
+}
+
+.left-filler {
+    width: 208px;
+}
+
+/* --- Przycisk opcji --- */
+.options {
+    border: none;
+    border-radius: 20px;
+    padding: 48px 32px;
+    font-size: 74px;
+    font-weight: 500;
+    background-color: var(--font-color);
+    color: var(--bg-color);
+    cursor: pointer;
+}
+
+.options:hover {
+    color: var(--accent-color);
+}
+
+/* --- Elementy ukryte --- */
+.hidden {
+    display: none;
+}
