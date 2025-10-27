@@ -8,7 +8,11 @@
 </head>
 <body>
     <header>
-        <section class="left-filler"></section>
+        <section class="left-filler">
+            <button id="back" class="icon hidden">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </section>
         <h2>ExamClock<span class="logo_square">&#9632;</span></h2>
 
         <nav>
@@ -21,7 +25,7 @@
         </nav>
     </header>
 
-    <section id="homepage">
+    <section class="homepage">
         <h4>Choose mode:</h4>
 
         <section id="modes">
@@ -30,14 +34,37 @@
         </section>
     </section>
 
-    <section id="setting_view" class="hidden">
-        <form>
+    <section class="settings hidden">
+        <h4>Settings</h4>
+
+        <form name="settings-form">
             <label>Exam name:</label><input type="text">
+            <br>
             <label>Examination centre number:</label><input type="text">
-            <label>1st time reminder:</label><input type="number">
-            <label>2nd time reminder:</label><input type="number">
+            <br>
+            <label>1st time reminder:</label><input type="numerical">
+            <br>
+            <label>2nd time reminder:</label><input type="numerical">
         </form>
     </section>
+
+    <section class="clock hidden">
+        <h2>Exam name</h2><h2>Centre number</h2>
+        <h1>HH:MM:SS</h1>
+        <h3>DD MONTH YYYY</h3>
+    </section>
+
+    <section class="timer hidden">
+        <h3>Exam name</h3><h3>Centre number</h3>
+        <h3>DD MONTH YYYY</h3>
+        <h4>Time left:</h4>
+        <h1>HH:MM:SS</h1>
+        <canvas>
+
+        </canvas>
+    </section>
 </body>
-<script src="renderer.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/clock.js"></script>
+<script src="js/timer.js"></script>
 </html>
