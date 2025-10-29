@@ -1,3 +1,5 @@
+import { updateInfo } from "./renderer.js";
+
 const { ipcRenderer } = require('electron');
 
 const data_form = document.forms['settings-form'];
@@ -17,10 +19,15 @@ async function getSettingsFromJSON(){
                 ipcRenderer.send('updated-settings', JSON_file);
             })
         }
-
+        return settings_data;
     } catch(error){
         console.error('Unable to download settings: ', error);
+        return null;
     }
 }
 
-getSettingsFromJSON();
+getSettingsFromJSON().then((data) => {
+    if(data){
+        updateInfo(data.settings);
+    }
+});

@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <title>ExamClock</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://kit.fontawesome.com/5abe9d46cd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="assets/fontawesome/css/all.css">
 </head>
 <body>
     <header>
         <section class="left-filler">
             <button id="back" class="icon hidden">
-                <i class="fa-solid fa-chevron-left">B</i>
+                <i class="fa-solid fa-chevron-left"></i>
             </button>
         </section>
         <h2>ExamClock<span class="logo_square">&#9632;</span></h2>
 
         <nav>
             <button class="icon">
-                <i class="fa-solid fa-circle-half-stroke" id="contrast">C</i>
+                <i class="fa-solid fa-circle-half-stroke" id="contrast"></i>
             </button>
             <button class="icon">
-                <i class="fa-solid fa-sliders" id="settings">S</i>
+                <i class="fa-solid fa-sliders" id="settings"></i>
             </button>
         </nav>
     </header>
@@ -40,7 +40,7 @@
         <form name="settings-form">
             <label>Exam name:</label><input name="exam_name" type="text">
             <br>
-            <label>Examination centre number:</label><input name="examination_centre_number" type="text">
+            <label>Examination centre number:</label><input name="centre_number" type="text">
             <br>
             <label>1st time reminder:</label><input name="1st_time_reminder" type="number">
             <br>
@@ -49,23 +49,23 @@
     </section>
 
     <section class="clock hidden">
-        <h2>Exam name</h2><h2>Centre number</h2>
-        <h1>HH:MM:SS</h1>
-        <h3>DD MONTH YYYY</h3>
+        <h2 class="exam_name">Exam name</h2><h2 class="centre_number">Centre number</h2>
+        <h1 id="time">HH:MM:SS</h1>
+        <h3 class="date">DD MONTH YYYY</h3>
     </section>
 
     <section class="timer hidden">
-        <h3>Exam name</h3><h3>Centre number</h3>
-        <h3>DD MONTH YYYY</h3>
+        <h3 class="exam_name">Exam name</h3><h3 class="centre_number">Centre number</h3>
+        <h3 class="date">DD MONTH YYYY</h3>
         <h4>Time left:</h4>
-        <h1>HH:MM:SS</h1>
+        <h1 id="time-left">HH:MM:SS</h1>
         <canvas>
 
         </canvas>
     </section>
 </body>
-<script src="renderer.js"></script>
-<script src="settings_data.js"></script>
-<script src="clock.js"></script>
-<script src="timer.js"></script>
+<script type="module" src="renderer.js"></script>
+<script type="module" src="settings_data.js"></script>
+<script type="module" src="clock.js"></script>
+<script type="module" src="timer.js"></script>
 </html>

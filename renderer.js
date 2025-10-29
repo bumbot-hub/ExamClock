@@ -1,5 +1,10 @@
+import { startClock, stopClock } from './clock.js';
+import { startTimer, stopTimer } from './timer.js';
+
 const contrast_BTN = document.getElementById("contrast");
 const back_BTN = document.getElementById("back");
+const goClock = document.getElementById("clock");
+const goTimer = document.getElementById("timer");
 
 let historyStack = []; // Stack of visited sites
 
@@ -50,16 +55,43 @@ page_changer_BTN.forEach(btn => {
 function goBack(){
     if (historyStack.length === 0) return;
 
-    const currentSection = getVisibleSection();
+    let currentSection = getVisibleSection();
     if(currentSection){
         currentSection.classList.add("hidden");
     }
 
     const prevSection = document.querySelector(`.${historyStack.pop()}`);
     if(prevSection){
+        if(!prevSection.classList.contains("clock")){
+            stopClock();
+        } else if(!prevSection.classList.contains("timer")){
+            stopTimer();
+        }
         prevSection.classList.remove("hidden");
         updateHeader(prevSection);
     }
 }
 
 back_BTN.addEventListener("click", goBack);
+
+export function updateInfo(data){
+    const nameFields = document.getElementsByClassName("exam_name");
+    const centreFields = document.getElementsByClassName("centre_number");
+
+    for(const field of nameFields){
+        field.innerHTML = data["exam_name"].toString();
+    }
+
+    for(const field of centreFields){
+        field.innerHTML = data["centre_number"].toString();
+    }
+}
+
+goClock.addEventListener("click", () => {
+    startClock();
+});
+
+
+goClock.addEventListener("click", () => {
+    startTimer();
+});

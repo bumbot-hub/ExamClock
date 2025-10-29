@@ -1,4 +1,4 @@
-![Header image](/img/header.png)
+![Header image](/assets/header.png)
 
 <hr>
 
@@ -15,7 +15,7 @@
 
 ## Mode selection (Timer/Clock)
 
-![Homepage image](/img/selection.png)
+![Homepage image](/assets/selection.png)
 
 - ### Each mode allows the user to enter the **Exam name and examination number** if not provided, these values are automatically loaded from the JSON configuration file.
   - ### Timer
