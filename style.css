@@ -23,13 +23,26 @@ body.high_contrast{
 }
 
 /* --- Headings --- */
+h1, .h1{
+    font-size: 256px;
+    text-align: center;
+    margin: 32px auto 0 auto;
+}
+
 h2 {
     margin: 0 auto;
     font-size: 72px;
 }
 
-h4 {
+h3{
+    margin: 0 auto;
     font-size: 54px;
+
+}
+
+h4 {
+    margin: 0 auto;
+    font-size: 42px;
 }
 
 /* --- Sections and structure --- */
@@ -48,14 +61,33 @@ nav{
 }
 
 .homepage {
-    margin-top: 148px;
+    margin-top: 192px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.settings{
+    margin-top: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clock{
+    display: flex;
+    flex-direction: column;
+    margin-top: 172px;
+}
+
+.timer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 172px;
+}
+
 #modes {
-    margin-top: 24px;
+    margin-top: 72px;
     display: flex;
     flex-direction: row;
     column-gap: 64px;
@@ -108,29 +140,55 @@ nav{
 }
 
 form{
-    margin-top: 72px;
+    margin-top: 64px;
 }
 
 form > *{
-    font-size: 24px;
-    margin-bottom: 16px;
-    font-weight: 500;
+    font-size: 28px;
+    margin-bottom: 24px;
+    font-weight: 600;
 }
 
-input {
+form > input {
     border: none;
     background: none;
     border-bottom: 2px solid var(--font-color);
     margin-left: 16px;
-    width: 25%;
+
 }
 
-input:focus {
+form > input[type="text"]{
+    width: 30%;
+}
+
+form > input[type="number"]{
+    width: 7%;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+form > input:focus {
     outline: none;
     border: none;
     border-bottom: 2px solid var(--accent-color);
 }
 
+
+/* --- Clock|Timer view --- */
+.exam_data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .hidden {
     display: none;
+}
+
+.not-set{
+    color: #666666;
 }
