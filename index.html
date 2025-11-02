@@ -58,16 +58,20 @@
     </section>
 
     <section class="timer hidden">
+        <div class="pop-up" id="timer_popup">
+            <h5>Enter exam duration: </h5>
+            <input type="time" id="countdown_input">
+            <input type="text" id="component_input" placeholder="Component">
+            <button id="start_timer">Start</button>
+        </div>
         <div class="exam_data">
             <h2 class="exam_name">Exam name</h2>
             <h2 class="centre_number">Centre number</h2>
         </div>
+        <h3 id="component">Component: </h3>
         <h3 class="date">DD MONTH YYYY</h3>
-        <h2>Time left:</h2>
-        <h1>HH:MM:SS</h1>
-        <canvas>
-
-        </canvas>
+        <h4>Time left:</h4>
+        <h1 id="countdown">HH:MM:SS</h1>
     </section>
 </body>
 <script type="module" src="renderer.js"></script>

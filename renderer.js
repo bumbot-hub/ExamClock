@@ -5,6 +5,7 @@ const contrast_BTN = document.getElementById("contrast");
 const back_BTN = document.getElementById("back");
 const goClock = document.getElementById("clock");
 const goTimer = document.getElementById("timer");
+const startTimer_BTN = document.getElementById("start_timer");
 
 let historyStack = []; // Stack of visited sites
 
@@ -91,7 +92,18 @@ goClock.addEventListener("click", () => {
     startClock();
 });
 
+const timerPopup = document.getElementById("timer_popup");
 
-goClock.addEventListener("click", () => {
-    startTimer();
+goTimer.addEventListener("click", () => {
+    timerPopup.classList.remove("hidden");
 });
+
+startTimer_BTN.addEventListener("click", () => {
+    const countdown_input = document.getElementById("countdown_input").value;
+    const component_input = document.getElementById("component_input").value;
+
+    document.getElementById("component").innerHTML += component_input;
+    startTimer(countdown_input, document.getElementById("countdown"));
+
+    timerPopup.classList.add("hidden");
+})

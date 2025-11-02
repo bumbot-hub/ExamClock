@@ -23,7 +23,7 @@ body.high_contrast{
 }
 
 /* --- Headings --- */
-h1, .h1{
+h1{
     font-size: 256px;
     text-align: center;
     margin: 32px auto 0 auto;
@@ -31,18 +31,23 @@ h1, .h1{
 
 h2 {
     margin: 0 auto;
-    font-size: 72px;
+    font-size: 84px;
 }
 
 h3{
     margin: 0 auto;
-    font-size: 54px;
+    font-size: 68px;
 
 }
 
 h4 {
     margin: 0 auto;
-    font-size: 42px;
+    font-size: 48px;
+}
+
+h5{
+    margin: 0 auto;
+    font-size: 32px;
 }
 
 /* --- Sections and structure --- */
@@ -77,13 +82,26 @@ nav{
 .clock{
     display: flex;
     flex-direction: column;
-    margin-top: 172px;
+    margin-top: 64px;
 }
 
 .timer{
     display: flex;
     flex-direction: column;
-    margin-top: 172px;
+    margin-top: 64px;
+}
+
+.pop-up{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--accent-color);
+    padding: 32px 128px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 #modes {
@@ -185,10 +203,45 @@ form > input:focus {
     align-items: center;
 }
 
-.hidden {
-    display: none;
+.pop-up > h5{
+    color: var(--bg-color);
+    text-align: center;
 }
 
-.not-set{
-    color: #666666;
+.pop-up form{
+    display: flex;
+    flex-direction: column;
+}
+
+.pop-up input{
+    font-size: 24px;
+    margin-bottom: 32px;
+    border: none;
+    border-radius: 24px;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    padding: 8px 16px;
+}
+
+.pop-up input:focus{
+    outline: none;
+}
+
+.pop-up button{
+    font-size: 32px;
+    font-weight: 500;
+    border: 2px solid var(--font-color);
+    border-radius: 24px;
+    color: var(--bg-color);
+    background-color: var(--font-color);
+    cursor: pointer;
+}
+
+.pop-up button:hover{
+    color: var(--bg-color);
+    background-color: var(--accent-color);
+}
+
+.hidden {
+    display: none;
 }
