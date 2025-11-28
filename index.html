@@ -22,6 +22,9 @@
             <button class="icon">
                 <i class="fa-solid fa-sliders" id="settings"></i>
             </button>
+            <button class="icon">
+                <i class="fa-solid fa-expand" id="fullscreen"></i>
+            </button>
         </nav>
     </header>
 
@@ -36,15 +39,23 @@
 
     <section class="settings hidden">
         <h4>Settings</h4>
-
-        <form name="settings-form">
+        <h6>Exam data</h6>
+        <form name="data-settings-form">
             <label>Exam name:</label><input name="exam_name" type="text">
             <br>
             <label>Examination centre number:</label><input name="centre_number" type="text">
             <br>
-            <label>1st time reminder:</label><input name="1st_time_reminder" type="number">
+            <label>1st reminder:</label><input name="1st_time_reminder" type="number">
             <br>
-            <label>2nd time reminder:</label><input name="2nd_time_reminder" type="number">
+            <label>2nd reminder:</label><input name="2nd_time_reminder" type="number">
+        </form>
+        <h6>Accessibility</h6>
+        <form name="accessibility-settings-form">
+            <label>Font boldness:</label><input name="font_size" type="range" min="0" max="100" value="50">
+            <br>
+            <label>Background color:</label><input id="bg_color" type="color" value="#DFD0C3">
+            <br>
+            <label>Font color:</label><input id="font_color" type="color" value="#121212">
         </form>
     </section>
 
@@ -61,17 +72,21 @@
         <div class="pop-up" id="timer_popup">
             <h5>Enter exam duration: </h5>
             <input type="time" id="countdown_input">
-            <input type="text" id="component_input" placeholder="Component">
+            <input type="text" id="component_input" placeholder="component name">
             <button id="start_timer">Start</button>
         </div>
         <div class="exam_data">
             <h2 class="exam_name">Exam name</h2>
             <h2 class="centre_number">Centre number</h2>
         </div>
-        <h3 id="component">Component: </h3>
+        <h3 id="component"></h3>
         <h3 class="date">DD MONTH YYYY</h3>
         <h4>Time left:</h4>
         <h1 id="countdown">HH:MM:SS</h1>
+        <nav class="timer-nav">
+            <i class="fa-solid fa-play" id="play_pause"></i>
+            <i class="fa-solid fa-stop" id="reset"></i>
+        </nav>
     </section>
 </body>
 <script type="module" src="renderer.js"></script>

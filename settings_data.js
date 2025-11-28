@@ -2,7 +2,8 @@ import { updateInfo } from "./renderer.js";
 
 const { ipcRenderer } = require('electron');
 
-const data_form = document.forms['settings-form'];
+const data_form = document.forms['data-settings-form'];
+const accessibility_form = document.forms['accessibility-settings-form'];
 
 async function getSettingsFromJSON(){
     try{
@@ -15,7 +16,7 @@ async function getSettingsFromJSON(){
         for (const cell of data_form.elements){
             cell.addEventListener('change',  () => {
                 JSON_file.settings[cell.name] = cell.value;
-                console.log(JSON_file);
+                updateInfo(JSON_file.settings);
                 ipcRenderer.send('updated-settings', JSON_file);
             })
         }

@@ -2,6 +2,7 @@ import { startClock, stopClock } from './clock.js';
 import { startTimer, stopTimer } from './timer.js';
 
 const contrast_BTN = document.getElementById("contrast");
+const fullscreen_BTN = document.getElementById("fullscreen");
 const back_BTN = document.getElementById("back");
 const goClock = document.getElementById("clock");
 const goTimer = document.getElementById("timer");
@@ -20,12 +21,34 @@ contrast_BTN.addEventListener("click", () => {
     contrast_BTN.classList.toggle("fa-flip-horizontal");
 })
 
+fullscreen_BTN.addEventListener("click", () => {
+    if(!document.fullscreenElement){
+        document.documentElement.requestFullscreen();
+        fullscreen_BTN.classList.add("fa-compress");
+        fullscreen_BTN.classList.remove("fa-expand");
+    }else{
+        document.exitFullscreen();
+        fullscreen_BTN.classList.add("fa-expand");
+        fullscreen_BTN.classList.remove("fa-compress");
+    }
+})
+
 function updateHeader(section){
     const backBTN = document.getElementById("back");
+    const logo = document.querySelector('h2');
+    const logo_accent = document.querySelector('.logo_square');
     if(section.classList.contains("homepage")){
         backBTN.classList.add('hidden');
     }else{
         backBTN.classList.remove('hidden');
+    }
+
+    if(section.classList.contains("clock") || section.classList.contains("timer")){
+        logo.style.color = "transparent";
+        logo_accent.style.color = "transparent";
+    }else{
+        logo.style.color = ''; //get back to default from CSS file
+        logo_accent.style.color = '';
     }
 }
 
