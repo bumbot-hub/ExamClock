@@ -1,4 +1,4 @@
-/* --- Global variables + basic style --- */
+/* --- Global variables + general style --- */
 :root {
     --bg-color: #DFD0C3;
     --font-color: #121212;
@@ -16,10 +16,108 @@ body {
     margin: 0;
 }
 
-body.high_contrast{
+body.contrast_mode{
     --bg-color: #FFFFFF;
     --font-color: #000000;
-    --accent-color: #FF6200;
+}
+
+body.dark_mode{
+    --bg-color: #121212;
+    --font-color: #DFDFDF;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--accent-color);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type="range"] {
+    background: var(--accent-color);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+    height: 0;
+    margin: 0;
+    background-color: var(--accent-color);
+}
+
+/* For progress bar*/
+/* Firefox */
+input[type="range"]::-moz-range-thumb {
+    width: 0;
+    height: 0;
+    border: none;
+    background: transparent;
+}
+
+/* Internet Explorer */
+input[type="range"]::-ms-thumb {
+    display: none;
 }
 
 /* --- Headings --- */
@@ -127,6 +225,9 @@ nav{
     border: none;
     background: none;
     font-size: 40px;
+}
+
+.icon > i{
     color: var(--font-color);
 }
 
@@ -164,7 +265,7 @@ nav{
 
 h6{
     margin-top: 24px;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     border-bottom: 3px solid var(--accent-color);
     width: 60%;
 }
@@ -204,8 +305,9 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=color], input[type=color]:hover,
 input[type=color]:focus, input[type=color]:active {
     border: none;
-    height: 36px;
-    width: 52px;
+    height: 42px;
+    width: 64px;
+    border-radius: 4px;
 }
 
 form > input:focus {
@@ -216,7 +318,7 @@ form > input:focus {
 
 
 /* --- Clock|Timer view --- */
-.exam_data {
+.exam_data, .others {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -225,6 +327,7 @@ form > input:focus {
 .pop-up > h5{
     color: var(--bg-color);
     text-align: center;
+    margin-bottom: 24px;
 }
 
 .pop-up form{
@@ -234,7 +337,7 @@ form > input:focus {
 
 .pop-up input{
     font-size: 24px;
-    margin-bottom: 32px;
+    margin-bottom: 8px;
     border: none;
     border-radius: 24px;
     background-color: var(--bg-color);
@@ -257,8 +360,7 @@ form > input:focus {
 }
 
 .pop-up button:hover{
-    color: var(--bg-color);
-    background-color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 .timer-nav{

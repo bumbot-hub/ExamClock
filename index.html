@@ -51,11 +51,19 @@
         </form>
         <h6>Accessibility</h6>
         <form name="accessibility-settings-form">
-            <label>Font boldness:</label><input name="font_size" type="range" min="0" max="100" value="50">
+            <label>12 hour mode: </label>
+            <label class="switch">
+                <input type="checkbox" id="hour_mode">
+                <span class="slider"></span>
+            </label>
             <br>
-            <label>Background color:</label><input id="bg_color" type="color" value="#DFD0C3">
+            <label>Dark mode: </label>
+            <label class="switch">
+                <input type="checkbox" id="dark_mode">
+                <span class="slider"></span>
+            </label>
             <br>
-            <label>Font color:</label><input id="font_color" type="color" value="#121212">
+            <label>Accent color:</label><input id="accent-color" type="color" value="#F27938">
         </form>
     </section>
 
@@ -79,10 +87,14 @@
             <h2 class="exam_name">Exam name</h2>
             <h2 class="centre_number">Centre number</h2>
         </div>
-        <h3 id="component"></h3>
-        <h3 class="date">DD MONTH YYYY</h3>
+        <div class="others">
+            <h4 id="component"> </h4>
+            <h3 class="date">DD MONTH YYYY</h3>
+        </div>
         <h4>Time left:</h4>
         <h1 id="countdown">HH:MM:SS</h1>
+        <input type="range" id="timer_progress" min="0" max="100" value="100">
+        <div id="reminders"></div>
         <nav class="timer-nav">
             <i class="fa-solid fa-play" id="play_pause"></i>
             <i class="fa-solid fa-stop" id="reset"></i>
