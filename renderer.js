@@ -1,5 +1,5 @@
-import { startClock, stopClock } from './clock.js';
-import { startTimer, pauseTimer, resumeTimer, stopTimer } from './timer.js';
+import {startClock, stopClock} from './clock.js';
+import {pauseTimer, resumeTimer, startTimer, stopTimer} from './timer.js';
 
 const contrast_BTN = document.getElementById("contrast");
 const fullscreen_BTN = document.getElementById("fullscreen");
@@ -9,13 +9,14 @@ const dark_mode_Switch = document.getElementById("dark_mode");
 const goClock = document.getElementById("clock");
 const goTimer = document.getElementById("timer");
 
-let hourMode = document.getElementById("hour-mode").checked;
+let hourMode = 24;
 let isRunning = false;
 
 const startTimer_BTN = document.getElementById("start_timer");
 const playPause_BTN = document.getElementById("play_pause");
 const reset_BTN = document.getElementById("reset");
 const accentColorChanger = document.getElementById("accent-color");
+const accentColorReset = document.getElementById("reset-accent");
 let historyStack = []; // Stack of visited sites
 
 // Returns first visible section (active) besides header
@@ -32,7 +33,6 @@ contrast_BTN.addEventListener("click", () => {
         document.body.style.setProperty("--accent-color", accentColorChanger.value);
     }
     contrast_BTN.classList.toggle("fa-flip-horizontal");
-    console.log(hourMode);
 })
 
 function contrastAccent(hex) {
@@ -90,6 +90,12 @@ function updateHeader(section){
     }
 }
 
+const hourModeCheckbox = document.getElementById("hour_mode");
+hourModeCheckbox.addEventListener("change", () => {
+    hourMode = hourModeCheckbox.checked ? 12 : 24;
+    startClock(hourMode);
+})
+
 const page_changer_BTN = [
     document.getElementById("settings"),
     document.getElementById("clock"),
@@ -115,7 +121,16 @@ page_changer_BTN.forEach(btn => {
 });
 
 accentColorChanger.addEventListener("input", () => {
-        document.body.style.setProperty("--"+accentColorChanger.id, accentColorChanger.value);
+    document.body.style.setProperty("--"+accentColorChanger.id, accentColorChanger.value);
+    accentColorReset.classList.remove("hidden");
+})
+
+accentColorReset.addEventListener("click", () => {
+    document.body.style.removeProperty("--accent-color")
+    accentColorChanger.value = getComputedStyle(document.body)
+        .getPropertyValue("--accent-color")
+        .trim();
+    accentColorReset.classList.add("hidden");
 })
 
 function goBack(){
@@ -156,7 +171,7 @@ export function updateInfo(data){
 }
 
 goClock.addEventListener("click", () => {
-    startClock();
+    startClock(hourMode);
 });
 
 const timerPopup = document.getElementById("timer_popup");

@@ -12,20 +12,29 @@ for(let i=0; i<date.length; i++) {
     date[i].innerHTML = day + " " + month + " " + year;
 }
 
-function clockSync(){
+function clockSync(hourMode){
     now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
+    let hours = now.getHours();
     const minutes= now.getMinutes().toString().padStart(2, '0');
     const seconds= now.getSeconds().toString().padStart(2, '0');
-    const clockFormat =`${hours}:${minutes}:${seconds}`;
+    let amPmIndicator;
+    if(hourMode === 12 && hours>12){
+        amPmIndicator = 'pm';
+        hours -= 12;
+    }else if(hourMode === 12){
+        amPmIndicator = 'am';
+    }else {
+        amPmIndicator = '';
+    }
 
-    time.innerHTML = clockFormat;
+    hours = hours.toString().padStart(2, '0');
+    time.innerHTML = `${hours}:${minutes}:${seconds} ${amPmIndicator}`;
 }
 
-export function startClock(){
+export function startClock(hourMode){
     if(intervalId) clearInterval(intervalId);
-    clockSync();
-    intervalId = setInterval(clockSync, 1000);
+    clockSync(hourMode);
+    intervalId = setInterval(clockSync, 1000, hourMode);
 }
 
 export function stopClock(){

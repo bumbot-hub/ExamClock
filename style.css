@@ -280,12 +280,28 @@ form > *{
     font-weight: 600;
 }
 
-form > input {
+form > input[type="text"],
+form > input[type="number"],
+input[type="color"] {
     border: none;
     background: none;
     border-bottom: 2px solid var(--font-color);
     margin-left: 16px;
 
+}
+
+form > input[type="color"]{
+    cursor: pointer;
+}
+
+form > input[type="button"]{
+    cursor: pointer;
+    background-color: var(--font-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 5px;
+    margin-left: 16px;
+    font-size: 36px;
 }
 
 form > input[type="text"]{
