@@ -379,6 +379,19 @@ form > input:focus {
     color: var(--accent-color);
 }
 
+#timer_progress{
+    opacity: 1;
+    background-color: #ffffff;
+}
+
+#timer_progress[disabled]::-webkit-slider-thumb {
+    background-color: var(--accent-color);
+}
+
+#timer_progress[disabled]::-moz-range-track {
+    background-color: var(--accent-color);
+}
+
 .timer-nav{
     display: flex;
     align-content: center;

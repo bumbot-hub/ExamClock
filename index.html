@@ -79,7 +79,7 @@
     <section class="timer hidden">
         <div class="pop-up" id="timer_popup">
             <h5>Enter exam duration: </h5>
-            <input type="time" id="countdown_input">
+            <input type="time" id="countdown_input" value="00:00">
             <input type="text" id="component_input" placeholder="component name">
             <button id="start_timer">Start</button>
         </div>
@@ -93,7 +93,7 @@
         </div>
         <h4>Time left:</h4>
         <h1 id="countdown">HH:MM:SS</h1>
-        <input type="range" id="timer_progress" min="0" max="100" value="100">
+        <input type="range" id="timer_progress" min="0" max="100" value="100" disabled>
         <div id="reminders"></div>
         <nav class="timer-nav">
             <i class="fa-solid fa-play" id="play_pause"></i>
