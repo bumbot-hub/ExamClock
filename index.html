@@ -63,7 +63,7 @@
                 <span class="slider"></span>
             </label>
             <br>
-            <label>Accent color:</label><input type="color" id="accent-color"  value="#F27938"><input type="button" id="reset-accent" class="hidden" value="reset">
+            <label>Accent color:</label><input type="color" id="accent-color" value="#F27938"><input type="button" id="reset-accent" class="hidden" value="reset">
         </form>
     </section>
 
@@ -77,27 +77,39 @@
     </section>
 
     <section class="timer hidden">
-        <div class="pop-up" id="timer_popup">
-            <h5>Enter exam duration: </h5>
-            <input type="time" id="countdown_input" value="00:00">
-            <input type="text" id="component_input" placeholder="component name">
-            <button id="start_timer">Start</button>
+        <div id="timer_popup">
+            <div class="pop-up" id="input">
+                <h5>Enter exam duration: </h5>
+                <input type="time" id="countdown_input" value="00:00">
+                <input type="text" id="component_input" placeholder="component name">
+                <button id="start_timer">Start</button>
+            </div>
+            <div class="pop-up hidden" id="reminder">
+                <h5>Your have X time left</h5>
+                <button id="ok_btn">Ok</button>
+            </div>
         </div>
+
         <div class="exam_data">
             <h2 class="exam_name">Exam name</h2>
             <h2 class="centre_number">Centre number</h2>
         </div>
+
         <div class="others">
             <h4 id="component"> </h4>
             <h3 class="date">DD MONTH YYYY</h3>
         </div>
+
         <h4>Time left:</h4>
         <h1 id="countdown">HH:MM:SS</h1>
-        <input type="range" id="timer_progress" min="0" max="100" value="100" disabled>
-        <div id="reminders"></div>
-        <nav class="timer-nav">
-            <i class="fa-solid fa-play" id="play_pause"></i>
-            <i class="fa-solid fa-stop" id="reset"></i>
+
+        <nav class="timer-nav hidden">
+            <div id="reminders"></div>
+            <input type="range" id="timer_progress" min="0" max="100" value="100" disabled>
+            <div class="buttons">
+                <i class="fa-solid fa-pause" id="play_pause"></i>
+                <i class="fa-solid fa-stop" id="reset"></i>
+            </div>
         </nav>
     </section>
 </body>

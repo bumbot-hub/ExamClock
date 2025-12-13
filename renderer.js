@@ -183,7 +183,8 @@ goTimer.addEventListener("click", () => {
 startTimer_BTN.addEventListener("click", () => {
     const countdown_input = document.getElementById("countdown_input").value;
     const component_input = document.getElementById("component_input").value;
-    const progress_bar = document.getElementById("timer_progress")
+    const progress_bar = document.getElementById("timer_progress");
+    document.getElementsByClassName("timer-nav")[0].classList.remove("hidden");
 
     document.getElementById("component").innerHTML += component_input;
     startTimer(countdown_input, document.getElementById("countdown"), progress_bar);
@@ -208,4 +209,5 @@ playPause_BTN.addEventListener("click", () => {
 
 reset_BTN.addEventListener("click", () => {
     stopTimer();
+    console.log("Stoping...");
 })
