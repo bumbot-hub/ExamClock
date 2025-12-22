@@ -74,7 +74,7 @@ export function endTimer(HTML, progress_bar, icon){
     remainingTime = 0;
     progress_bar.style.width = '0%';
     HTML.innerHTML = '00:00:00';
-    document.getElementById('timer_popup').classList.remove('hidden');
+    document.getElementById('timer-popup').classList.remove('hidden');
     document.getElementById('reminder').classList.remove('hidden');
     //icon.classList.remove('fa-stop');
     //icon.classList.add('fa-arrow-rotate-right');

@@ -1,10 +1,11 @@
 import {startClock, stopClock} from './clock.js';
 import {pauseTimer, resumeTimer, startTimer, endTimer} from './timer.js';
 
+
 const contrast_BTN = document.getElementById("contrast");
 const fullscreen_BTN = document.getElementById("fullscreen");
 const back_BTN = document.getElementById("back");
-const dark_mode_Switch = document.getElementById("dark_mode");
+const dark_mode_Switch = document.getElementById("dark-mode");
 
 const goClock = document.getElementById("clock");
 const goTimer = document.getElementById("timer");
@@ -12,13 +13,13 @@ const goTimer = document.getElementById("timer");
 let hourMode = 24;
 let isRunning = false;
 
-const startTimer_BTN = document.getElementById("start_timer");
-const playPause_BTN = document.getElementById("play_pause");
+const startTimer_BTN = document.getElementById("start-timer");
+const playPause_BTN = document.getElementById("play-pause");
 const reset_BTN = document.getElementById("reset");
 const accentColorChanger = document.getElementById("accent-color");
 const accentColorReset = document.getElementById("reset-accent");
 const reset_icon = document.getElementById('reset');
-const okBtn = document.getElementById('ok_btn');
+const okBtn = document.getElementById('ok-btn');
 let historyStack = []; // Stack of visited sites
 
 // Returns first visible section (active) besides header
@@ -28,8 +29,8 @@ function getVisibleSection(){
 }
 
 contrast_BTN.addEventListener("click", () => {
-    document.body.classList.toggle("contrast_mode");
-    if(document.body.classList.contains("contrast_mode")){
+    document.body.classList.toggle("contrast-mode");
+    if(document.body.classList.contains("contrast-mode")){
         document.body.style.setProperty("--accent-color", contrastAccent(accentColorChanger.value));
     }else{
         document.body.style.setProperty("--accent-color", accentColorChanger.value);
@@ -70,13 +71,13 @@ fullscreen_BTN.addEventListener("click", () => {
 })
 
 dark_mode_Switch.addEventListener("click", () => {
-    document.body.classList.toggle("dark_mode");
+    document.body.classList.toggle("dark-mode");
 })
 
 function updateHeader(section){
     const backBTN = document.getElementById("back");
     const logo = document.querySelector('h2');
-    const logo_accent = document.querySelector('.logo_square');
+    const logo_accent = document.querySelector('.logo-square');
     if(section.classList.contains("homepage")){
         backBTN.classList.add('hidden');
     }else{
@@ -92,7 +93,7 @@ function updateHeader(section){
     }
 }
 
-const hourModeCheckbox = document.getElementById("hour_mode");
+const hourModeCheckbox = document.getElementById("hour-mode");
 hourModeCheckbox.addEventListener("change", () => {
     hourMode = hourModeCheckbox.checked ? 12 : 24;
     startClock(hourMode);
@@ -160,15 +161,15 @@ function goBack(){
 back_BTN.addEventListener("click", goBack);
 
 export function updateInfo(data){
-    const nameFields = document.getElementsByClassName("exam_name");
-    const centreFields = document.getElementsByClassName("centre_number");
+    const nameFields = document.getElementsByClassName("exam-name");
+    const centreFields = document.getElementsByClassName("centre-number");
 
     for(const field of nameFields){
-        field.innerHTML = data["exam_name"].toString();
+        field.innerHTML = data["exam-name"].toString();
     }
 
     for(const field of centreFields){
-        field.innerHTML = data["centre_number"].toString();
+        field.innerHTML = data["centre-number"].toString();
     }
 }
 
@@ -176,7 +177,7 @@ goClock.addEventListener("click", () => {
     startClock(hourMode);
 });
 
-const timerPopup = document.getElementById("timer_popup");
+const timerPopup = document.getElementById("timer-popup");
 
 goTimer.addEventListener("click", () => {
     timerPopup.classList.remove("hidden");
@@ -188,9 +189,9 @@ startTimer_BTN.addEventListener("click", () => {
         reset_icon.classList.remove('fa-arrow-rotate-right');
         reset_icon.classList.add('fa-stop');
     }
-    const countdown_input = document.getElementById("countdown_input").value;
-    const component_input = document.getElementById("component_input").value;
-    const progress_bar = document.getElementById("timer_progress");
+    const countdown_input = document.getElementById("countdown-input").value;
+    const component_input = document.getElementById("component-input").value;
+    const progress_bar = document.getElementById("timer-progress");
     document.getElementsByClassName("timer-nav")[0].classList.remove("hidden");
 
     document.getElementById("component").innerHTML += component_input;
@@ -208,7 +209,7 @@ playPause_BTN.addEventListener("click", () => {
         playPause_BTN.classList.remove("fa-pause");
         playPause_BTN.classList.add("fa-play");
     }else{
-        resumeTimer(document.getElementById("countdown"), document.getElementById("timer_progress"));
+        resumeTimer(document.getElementById("countdown"), document.getElementById("timer-progress"));
         playPause_BTN.classList.remove("fa-play");
         playPause_BTN.classList.add("fa-pause");
     }
@@ -216,7 +217,7 @@ playPause_BTN.addEventListener("click", () => {
 })
 
 reset_BTN.addEventListener("click", () => {
-    endTimer(document.getElementById('countdown'), document.getElementById("timer_progress"), reset_icon);
+    endTimer(document.getElementById('countdown'), document.getElementById("timer-progress"), reset_icon);
 })
 
 okBtn.addEventListener("click", () => {
