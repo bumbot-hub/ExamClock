@@ -1,8 +1,8 @@
 {
   "name": "examclock",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An app for examination centres to show time to candidates",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"

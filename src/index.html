@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>ExamClock</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="assets/fontawesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/fontawesome/css/all.css">
 </head>
 <body>
     <header>
@@ -78,15 +78,15 @@
 
     <section class="timer hidden">
         <div id="timer_popup">
-            <div class="pop-up" id="input">
+            <div class="pop-up hidden" id="input">
                 <h5>Enter exam duration: </h5>
                 <input type="time" id="countdown_input" value="00:00">
                 <input type="text" id="component_input" placeholder="component name">
                 <button id="start_timer">Start</button>
             </div>
             <div class="pop-up hidden" id="reminder">
-                <h5>Your have X time left</h5>
-                <button id="ok_btn">Ok</button>
+                <h5>Your time has ended</h5>
+                <button id="ok_btn">OK</button>
             </div>
         </div>
 
@@ -101,11 +101,13 @@
         </div>
 
         <h4>Time left:</h4>
-        <h1 id="countdown">HH:MM:SS</h1>
+        <h1 id="countdown">00:00:00</h1>
 
         <nav class="timer-nav hidden">
             <div id="reminders"></div>
-            <input type="range" id="timer_progress" min="0" max="100" value="100" disabled>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="timer_progress"></div>
+            </div>
             <div class="buttons">
                 <i class="fa-solid fa-pause" id="play_pause"></i>
                 <i class="fa-solid fa-stop" id="reset"></i>
@@ -113,8 +115,8 @@
         </nav>
     </section>
 </body>
-<script type="module" src="renderer.js"></script>
-<script type="module" src="settings_data.js"></script>
-<script type="module" src="clock.js"></script>
-<script type="module" src="timer.js"></script>
+<script type="module" src="js/renderer.js"></script>
+<script type="module" src="js/settings_data.js"></script>
+<script type="module" src="js/clock.js"></script>
+<script type="module" src="js/timer.js"></script>
 </html>

@@ -91,34 +91,6 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input[type="range"] {
-    background: var(--accent-color);
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 0;
-    height: 0;
-    margin: 0;
-    background-color: var(--accent-color);
-}
-
-/* For progress bar*/
-/* Firefox */
-input[type="range"]::-moz-range-thumb {
-    width: 0;
-    height: 0;
-    border: none;
-    background: transparent;
-}
-
-/* Internet Explorer */
-input[type="range"]::-ms-thumb {
-    display: none;
-}
-
 /* --- Headings --- */
 h1{
     font-size: 256px;
@@ -222,6 +194,7 @@ nav{
     border: none;
     background: none;
     font-size: 40px;
+    cursor: pointer;
 }
 
 .icon > i{
@@ -337,10 +310,10 @@ form > input:focus {
     align-items: center;
 }
 
-.timer > h4{
+.timer > h4 {
     margin-top: 16px;
     margin-bottom: -82px;
-    clear: both;
+    margin-left: 23%;
 }
 
 .others{
@@ -386,18 +359,22 @@ form > input:focus {
     color: var(--accent-color);
 }
 
-#timer_progress{
+.progress-bar-container {
     width: 65%;
-    opacity: 1;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
     margin-left: 3%;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#timer_progress[disabled]::-webkit-slider-thumb {
+.progress-bar-fill {
+    height: 100%;
     background-color: var(--accent-color);
-}
-
-#timer_progress[disabled]::-moz-range-track {
-    background-color: var(--accent-color);
+    width: 100%;
+    transition: width 0.3s ease;
+    border-radius: 20px;
 }
 
 .timer-nav{

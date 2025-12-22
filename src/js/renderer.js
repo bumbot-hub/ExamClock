@@ -1,5 +1,5 @@
 import {startClock, stopClock} from './clock.js';
-import {pauseTimer, resumeTimer, startTimer, stopTimer} from './timer.js';
+import {pauseTimer, resumeTimer, startTimer, endTimer} from './timer.js';
 
 const contrast_BTN = document.getElementById("contrast");
 const fullscreen_BTN = document.getElementById("fullscreen");
@@ -17,6 +17,8 @@ const playPause_BTN = document.getElementById("play_pause");
 const reset_BTN = document.getElementById("reset");
 const accentColorChanger = document.getElementById("accent-color");
 const accentColorReset = document.getElementById("reset-accent");
+const reset_icon = document.getElementById('reset');
+const okBtn = document.getElementById('ok_btn');
 let historyStack = []; // Stack of visited sites
 
 // Returns first visible section (active) besides header
@@ -147,7 +149,7 @@ function goBack(){
             stopClock();
         }
         if(!prevSection.classList.contains("timer")){
-            stopTimer();
+            pauseTimer();
         }
 
         prevSection.classList.remove("hidden");
@@ -178,9 +180,14 @@ const timerPopup = document.getElementById("timer_popup");
 
 goTimer.addEventListener("click", () => {
     timerPopup.classList.remove("hidden");
+    timerPopup.children[0].classList.remove("hidden");
 });
 
 startTimer_BTN.addEventListener("click", () => {
+    if(reset_icon.classList.contains('fa-arrow-rotate-right')){
+        reset_icon.classList.remove('fa-arrow-rotate-right');
+        reset_icon.classList.add('fa-stop');
+    }
     const countdown_input = document.getElementById("countdown_input").value;
     const component_input = document.getElementById("component_input").value;
     const progress_bar = document.getElementById("timer_progress");
@@ -190,24 +197,29 @@ startTimer_BTN.addEventListener("click", () => {
     startTimer(countdown_input, document.getElementById("countdown"), progress_bar);
 
     timerPopup.classList.add("hidden");
+    timerPopup.children[0].classList.add("hidden");
+    isRunning = true;
 })
 
 
 playPause_BTN.addEventListener("click", () => {
     if(isRunning){
         pauseTimer();
-        playPause_BTN.classList.add("fa-pause");
-        playPause_BTN.classList.remove("fa-play");
-
-    }else{
-        resumeTimer(document.getElementById("countdown"));
-        playPause_BTN.classList.add("fa-play");
         playPause_BTN.classList.remove("fa-pause");
+        playPause_BTN.classList.add("fa-play");
+    }else{
+        resumeTimer(document.getElementById("countdown"), document.getElementById("timer_progress"));
+        playPause_BTN.classList.remove("fa-play");
+        playPause_BTN.classList.add("fa-pause");
     }
     isRunning = !isRunning;
 })
 
 reset_BTN.addEventListener("click", () => {
-    stopTimer();
-    console.log("Stoping...");
+    endTimer(document.getElementById('countdown'), document.getElementById("timer_progress"), reset_icon);
+})
+
+okBtn.addEventListener("click", () => {
+    timerPopup.classList.add("hidden");
+    timerPopup.children[1].classList.add("hidden");
 })

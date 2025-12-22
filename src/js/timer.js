@@ -14,21 +14,28 @@ function renderTime(HTML) {
     ].join(':');
 }
 
+function updateProgressBar(progress_bar) {
+    if(!progress_bar || !fullTime) return;
+
+    const progressPercentage = (remainingTime / fullTime) * 100;
+    progress_bar.style.width = progressPercentage + '%';
+
+    const progressPercentageText = document.getElementById('progress-percentage');
+    if (progressPercentageText) {
+        progressPercentageText.innerHTML = Math.round(progressPercentage) + '%';
+    }
+}
+
 function startInterval(HTML, progress_bar) {
     if (intervalId) clearInterval(intervalId);
 
     intervalId = setInterval(() => {
-        if (remainingTime < 0) {
-            clearInterval(intervalId);
-            intervalId = null;
-            remainingTime = 0;
-            progress_bar.value = 100;
-            HTML.innerHTML = '00:00:00';
-            endTimer();
+        if (remainingTime <= 0) {
+            endTimer(HTML, progress_bar);
         } else {
-            progress_bar.value = (remainingTime / fullTime) * 100;
-            renderTime(HTML);
             remainingTime--;
+            updateProgressBar(progress_bar);
+            renderTime(HTML);
         }
     }, 1000);
 }
@@ -38,8 +45,11 @@ export function startTimer(countdown, HTML, progress_bar){
         parseInt(countdown.slice(0,2), 10) * 3600 +
         parseInt(countdown.slice(3,5), 10) * 60;
 
-    remainingTime = fullTime;
+    if(remainingTime === 0){
+        remainingTime = fullTime;
+    }
     renderTime(HTML);
+    updateProgressBar(progress_bar);
     startInterval(HTML, progress_bar);
 }
 
@@ -56,14 +66,17 @@ export function resumeTimer(HTML, progress_bar){
     }
 }
 
-export function stopTimer(){
+export function endTimer(HTML, progress_bar, icon){
     if (intervalId) {
         clearInterval(intervalId);
         intervalId = null;
     }
     remainingTime = 0;
-}
-
-function endTimer(){
+    progress_bar.style.width = '0%';
+    HTML.innerHTML = '00:00:00';
+    document.getElementById('timer_popup').classList.remove('hidden');
+    document.getElementById('reminder').classList.remove('hidden');
+    //icon.classList.remove('fa-stop');
+    //icon.classList.add('fa-arrow-rotate-right');
 
 }
