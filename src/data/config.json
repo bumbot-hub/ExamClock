@@ -7,8 +7,8 @@
   },
   "accessibility": {
     "hour-mode": true,
-    "dark-mode": false,
-    "accent-color": "#2b41e9"
+    "dark-mode": true,
+    "accent-color": "#34df48"
   },
   "timers": []
 }

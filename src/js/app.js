@@ -133,10 +133,6 @@ DOM.clockBtn.addEventListener("click", () => {
     startClock(state.hourMode);
 });
 
-DOM.timerBtn.addEventListener("click", () => {
-    DOM.timerPopup.classList.remove("hidden");
-    DOM.timerPopup.children[0].classList.remove("hidden");
-});
 
 export function updateInfo(data){
     for(const field of DOM.examNameEl){
@@ -166,8 +162,6 @@ export function updateAccessibility(data){
     if(data['accent-color']){
         document.body.style.setProperty('--accent-color', data['accent-color']);
     }
-
-
 }
 
 setupTimerEvents(DOM, state);
