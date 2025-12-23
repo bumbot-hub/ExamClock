@@ -1,7 +1,7 @@
 import {toggleClasses} from "./utils.js";
 
 let intervalId = null;
-let remainingTime = 0;
+export let remainingTime = 0;
 let fullTime = 0;
 
 function renderTime(HTML) {
