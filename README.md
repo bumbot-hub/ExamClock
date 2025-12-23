@@ -166,7 +166,7 @@ npm run build    # Builds the application for distribution
 
 ## 🐛 Known Issues
 
-- When exiting to the main menu during timer operation, an unnecessary popup appears to restart the timer
+- When exiting to the main menu during timer operation, an unnecessary popup appears to restart the timer **(Resolved)**
 
 ---
 
