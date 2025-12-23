@@ -26,6 +26,7 @@ const DOM = {
     okBtn: document.getElementById('ok-btn'),
     playPauseBtn: document.getElementById('play-pause'),
     progressBar: document.getElementById('timer-progress'),
+    remindersContainer: document.getElementById('reminders'),
     resetBtn: document.getElementById('reset'),
     startTimerBtn: document.getElementById('start-timer'),
     timerPopup: document.getElementById('timer-popup'),
@@ -34,7 +35,9 @@ const DOM = {
 let state = {
     hourMode: 24,
     isTimerRunning: false,
-    historyStack: [] // Stack of visited sites for goBack() function
+    historyStack: [], // Stack of visited sites for goBack() function
+    reminder1: 0,
+    reminder2: 0
 };
 
 const pageChangerBtn = [
@@ -143,7 +146,8 @@ export function updateInfo(data){
         field.innerHTML = data["centre-number"].toString();
     }
 
-    //implement reminders
+    state.reminder1 = data['1st-reminder'];
+    state.reminder2 = data['2nd-reminder'];
 }
 
 export function updateAccessibility(data){

@@ -34,7 +34,11 @@ export function setupTimerEvents(DOM, appState){
     });
 
     DOM.resetBtn.addEventListener("click", () => {
-        endTimer(DOM.countdownField, DOM.progressBar, DOM.resetBtn);
+        if(DOM.resetBtn.classList.contains('fa-stop')){
+            endTimer(DOM.countdownField, DOM.progressBar, DOM.resetBtn);
+        }else if(DOM.resetBtn.classList.contains('fa-arrow-rotate-right')){
+            DOM.timerBtn.click();                       // Simulating clicking on timer button for popup to show
+        }
     });
 
     DOM.okBtn.addEventListener("click", () => {

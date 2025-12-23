@@ -1,16 +1,16 @@
-# ExamClock ⏰
-
 ![Header image](/assets/images/header.png)
 
+
+<p align="center">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/Electron-47848F?style=for-the-badge&logo=electron&logoColor=white" alt="Electron">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white" alt="JSON">
+</p>
+
 ---
-
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![Electron](https://img.shields.io/badge/Electron-47848F?style=for-the-badge&logo=electron&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
-![JSON](https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white)
-
 ## 📖 Introduction
 
 **ExamClock** is a desktop application for exam centers that simplifies exam time management by combining a countdown timer with a digital clock.
@@ -35,16 +35,10 @@
 
 ### 👤 Personalization
 
-- Ability to enter **exam name** and **exam center number**
+- Ability to enter **exam name** and **examination center number**
 - Automatic loading of data from JSON configuration file (if values are not entered manually)
 - **Customizable colors** for the application
-- **Font selection**
-- **Contrast mode** for enhanced accessibility
-
-### 🎨 Dark Mode
-
-- Toggle between light and dark mode
-- Automatic adjustment to system preferences
+- **Contrast and dark mode** for enhanced accessibility
 
 ### ⚙️ Configuration
 
@@ -96,24 +90,26 @@ The application will be compiled to `.exe` (Windows), `.dmg` (macOS), or `.AppIm
 ```
 examclock/
 ├── assets/
-│   ├── fontawesome/            # Folder with icons for app to work offline
+│   ├── fontawesome/            # Icons files so the app works offline
 │   │   ├── ...
-│   ├── images/                 # Folder with images for README and app icon
+│   ├── images/                 # Images for the README and app UI
 │   │   ├── ...
 ├── src/
-│   ├── main.js                 # Electron main process
-│   ├── index.html              # HTML template
-│   ├── styles/
-│   │   └── style.css           # Application styles
-│   ├── js/
-│   │   ├── timer.js            # Timer functions
-│   │   ├── clock.js            # Clock functions
-│   │   ├── app.js         # Renderer process (events)
-│   │   └── settings_data.js    # Settings management
 │   └── data/
 │       └── config.json         # Configuration file
-├── package.json
+│   ├── js/
+│   │   ├── app.js              # Renderer logic and UI event wiring
+│   │   ├── clock.js            # Clock display and update logic
+│   │   ├── settings_data.js    # Loading and saving settings
+│   │   ├── timer.js            # Timer logic
+│   │   ├── timerUI.js          # Timer-related UI interactions
+│   │   └── utils.js            # Shared helper functions
+│   ├── styles/
+│   │   └── style.css
+│   ├── index.html
+│   └── main.js                 # Electron main process
 ├── .gitignore
+├── package.json
 └── README.md
 ```
 
@@ -121,16 +117,24 @@ examclock/
 
 ## 📝 Configuration File
 
-The application uses the `data/config.json` file to store user settings:
+The application uses the `data/config.json` file to store user settings.
+
+**Example file content:**
 
 ```json
 {
-  "settings": {
-    "exam_name": "Mathematics",
-    "centre_number": "12345",
-    "theme": "light",
-    "hour_mode": 24
-  }
+   "settings": {
+      "exam-name": "Analisys 2.1B",
+      "centre-number": "WRO_04",
+      "1st-reminder": "30",
+      "2nd-reminder": "5"
+   },
+   "accessibility": {
+      "hour-mode": false,
+      "dark-mode": true,
+      "accent-color": "#F27938"
+   },
+   "timers": []
 }
 ```
 
@@ -166,14 +170,14 @@ npm run build    # Builds the application for distribution
 
 ## 🐛 Known Issues
 
-- When exiting to the main menu during timer operation, an unnecessary popup appears to restart the timer **(Resolved)**
+- [x] When exiting to the main menu during timer operation, an unnecessary popup appears to restart the timer **(Resolved)**
 
 ---
 
 ## 📋 Planned Features
 
-- [ ] More settings remembered in file 
-- [ ] Code structure improvement
+- [x] More settings remembered in file 
+- [x] Code structure improvement
 - [ ] Add reminders for timer
 - [ ] Create history for timers
 
