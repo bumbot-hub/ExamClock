@@ -6,8 +6,8 @@ export function setupTimerEvents(DOM, appState){
         toggleClasses(DOM.resetBtn, 'fa-arrow-rotate-right', 'fa-stop')
         document.getElementsByClassName("timer-nav")[0].classList.remove("hidden");
 
-        DOM.componentField.innerHTML += DOM.componentInput.value;
-        startTimer(DOM.countdownInput, DOM.countdownField, DOM.progressBar);
+        DOM.componentField.innerHTML = DOM.componentInput.value;
+        startTimer(DOM.countdownInput.value, DOM.countdownField, DOM.progressBar);
 
         DOM.timerPopup.classList.add("hidden");
         DOM.timerPopup.children[0].classList.add("hidden");
