@@ -1,4 +1,4 @@
-import {toggleClasses} from "./utils";
+import {toggleClasses} from "./utils.js";
 
 let intervalId = null;
 let remainingTime = 0;

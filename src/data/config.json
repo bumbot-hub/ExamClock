@@ -1,6 +1,9 @@
-{"settings":{
-  "examName":"C1 Advance",
-  "centreNumber":"PL006",
-  "1stReminder":"15",
-  "2ndReminder":"30"
-},"timers":[]}
+{
+  "settings": {
+    "exam-name": "C1 Advanced",
+    "centre-number": "PL006",
+    "1st-reminder": "15",
+    "2nd-reminder": "30"
+  },
+  "timers": []
+}

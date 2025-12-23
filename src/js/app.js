@@ -1,7 +1,7 @@
 import {startClock, stopClock} from './clock.js';
-import {getVisibleSection, createContrastColor, toggleClasses} from './utils'
-import {setupTimerEvents} from "./timerUI";
-import {pauseTimer} from "./timer";
+import {getVisibleSection, createContrastColor, toggleClasses} from './utils.js'
+import {setupTimerEvents} from "./timerUI.js";
+import {pauseTimer} from "./timer.js";
 
 const DOM = {
     // Global buttons
@@ -105,7 +105,7 @@ function goBack(){
 }
 
 //Global, Homepage and Setting listeners
-DOM.back.addEventListener("click", goBack);
+DOM.backBtn.addEventListener("click", goBack);
 
 DOM.contrastBtn.addEventListener("click", () => {
     document.body.classList.toggle("contrast-mode");
@@ -123,7 +123,7 @@ DOM.fullscreenBtn.addEventListener("click", () => {
     }else{
         document.exitFullscreen();
     }
-    toggleClasses(DOM.fullscreen, 'fa-compress', 'fa-expand');
+    toggleClasses(DOM.fullscreenBtn, 'fa-expand', 'fa-compress');
 });
 
 DOM.darkModeCheckbox.addEventListener("click", () => {
@@ -159,11 +159,11 @@ DOM.timerBtn.addEventListener("click", () => {
 
 export function updateInfo(data){
     for(const field of DOM.examNameEl){
-        field.innerHTML = data.examName.toString();
+        field.innerHTML = data["exam-name"].toString();
     }
 
     for(const field of DOM.centreNumberEl){
-        field.innerHTML = data.centreNumber.toString();
+        field.innerHTML = data["centre-number"].toString();
     }
 }
 

@@ -1,5 +1,5 @@
-import {endTimer, pauseTimer, resumeTimer, startTimer} from "./timer";
-import {toggleClasses} from "./utils";
+import {endTimer, pauseTimer, resumeTimer, startTimer} from "./timer.js";
+import {toggleClasses} from "./utils.js";
 
 export function setupTimerEvents(DOM, appState){
     DOM.startTimerBtn.addEventListener("click", () => {
@@ -24,8 +24,8 @@ export function setupTimerEvents(DOM, appState){
         appState.isRunning = !appState.isRunning;
     });
 
-    DOM.reset.addEventListener("click", () => {
-        endTimer(DOM.countdownField, DOM.progressBar, DOM.reset);
+    DOM.resetBtn.addEventListener("click", () => {
+        endTimer(DOM.countdownField, DOM.progressBar, DOM.resetBtn);
     });
 
     DOM.okBtn.addEventListener("click", () => {
