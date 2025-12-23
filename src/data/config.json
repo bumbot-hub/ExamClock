@@ -1,14 +1,14 @@
 {
   "settings": {
-    "exam-name": "C1 Advanced",
-    "centre-number": "PL006",
-    "1st-reminder": "15",
-    "2nd-reminder": "30"
+    "exam-name": "",
+    "centre-number": "",
+    "1st-reminder": "",
+    "2nd-reminder": ""
   },
   "accessibility": {
-    "hour-mode": true,
-    "dark-mode": true,
-    "accent-color": "#34df48"
+    "hour-mode": false,
+    "dark-mode": false,
+    "accent-color": "#F27938"
   },
   "timers": []
 }
