@@ -108,7 +108,7 @@ examclock/
 │   ├── js/
 │   │   ├── timer.js            # Timer functions
 │   │   ├── clock.js            # Clock functions
-│   │   ├── renderer.js         # Renderer process (events)
+│   │   ├── app.js         # Renderer process (events)
 │   │   └── settings_data.js    # Settings management
 │   └── data/
 │       └── config.json         # Configuration file
@@ -172,6 +172,7 @@ npm run build    # Builds the application for distribution
 
 ## 📋 Planned Features
 
+- [ ] More settings remembered in file 
 - [ ] Code structure improvement
 - [ ] Add reminders for timer
 - [ ] Create history for timers

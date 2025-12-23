@@ -1,1 +1,6 @@
-{"settings":{"exam_name":"C1 ADVANCED","centre_number":"PL006","1st_reminder":"20","2nd_reminder":"15","examination_centre_number":"PL006","exam-name":"C1 Advance","centre-number":"PL006","1st-reminder":"15","2nd-reminder":"30"},"timers":[]}
+{"settings":{
+  "examName":"C1 Advance",
+  "centreNumber":"PL006",
+  "1stReminder":"15",
+  "2ndReminder":"30"
+},"timers":[]}

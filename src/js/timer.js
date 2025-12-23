@@ -1,3 +1,5 @@
+import {toggleClasses} from "./utils";
+
 let intervalId = null;
 let remainingTime = 0;
 let fullTime = 0;
@@ -14,11 +16,11 @@ function renderTime(HTML) {
     ].join(':');
 }
 
-function updateProgressBar(progress_bar) {
-    if(!progress_bar || !fullTime) return;
+function updateProgressBar(progressBar) {
+    if(!progressBar || !fullTime) return;
 
     const progressPercentage = (remainingTime / fullTime) * 100;
-    progress_bar.style.width = progressPercentage + '%';
+    progressBar.style.width = progressPercentage + '%';
 
     const progressPercentageText = document.getElementById('progress-percentage');
     if (progressPercentageText) {
@@ -51,6 +53,7 @@ export function startTimer(countdown, HTML, progress_bar){
     renderTime(HTML);
     updateProgressBar(progress_bar);
     startInterval(HTML, progress_bar);
+
 }
 
 export function pauseTimer(){
@@ -60,9 +63,9 @@ export function pauseTimer(){
     }
 }
 
-export function resumeTimer(HTML, progress_bar){
+export function resumeTimer(HTML, progressBar){
     if (!intervalId && remainingTime > 0) {
-        startInterval(HTML, progress_bar);
+        startInterval(HTML, progressBar);
     }
 }
 
@@ -76,7 +79,5 @@ export function endTimer(HTML, progress_bar, icon){
     HTML.innerHTML = '00:00:00';
     document.getElementById('timer-popup').classList.remove('hidden');
     document.getElementById('reminder').classList.remove('hidden');
-    //icon.classList.remove('fa-stop');
-    //icon.classList.add('fa-arrow-rotate-right');
-
+    toggleClasses(icon, 'fa-stop', 'fa-arrow-rotate-right');
 }
