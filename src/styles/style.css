@@ -271,7 +271,9 @@ form > input[type="button"]{
     border: none;
     border-radius: 5px;
     margin-left: 16px;
-    font-size: 36px;
+    padding: 4px 16px;
+    font-size: 24px;
+    font-weight: 500;
 }
 
 form > input[type="text"]{
