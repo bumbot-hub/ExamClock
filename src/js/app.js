@@ -15,8 +15,6 @@ const DOM = {
     accentColorReset: document.getElementById('reset-accent'),
     examNameEl: document.getElementsByClassName('exam-name'),
     centreNumberEl: document.getElementsByClassName('centre-number'),
-    darkModeCheckbox: document.getElementById('dark-mode'),
-    hourModeCheckbox: document.getElementById('hour-mode'),
     // Homepage
     clockBtn: document.getElementById('clock'),
     timerBtn: document.getElementById('timer'),
@@ -126,26 +124,9 @@ DOM.fullscreenBtn.addEventListener("click", () => {
     toggleClasses(DOM.fullscreenBtn, 'fa-expand', 'fa-compress');
 });
 
-DOM.darkModeCheckbox.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
-
-DOM.hourModeCheckbox.addEventListener("change", () => {
-    state.hourMode = DOM.hourModeCheckbox.checked ? 12 : 24;
-    startClock(state.hourMode);
-});
-
+// Color change logic implemented in settings_data.js
 DOM.accentColorChanger.addEventListener("input", () => {
-    document.body.style.setProperty("--"+DOM.accentColorChanger.id, DOM.accentColorChanger.value);
     DOM.accentColorReset.classList.remove("hidden");
-});
-
-DOM.accentColorReset.addEventListener("click", () => {
-    document.body.style.removeProperty("--accent-color")
-    DOM.accentColorChanger.value = getComputedStyle(document.body)
-        .getPropertyValue("--accent-color")
-        .trim();
-    DOM.accentColorReset.classList.add("hidden");
 });
 
 DOM.clockBtn.addEventListener("click", () => {
@@ -165,6 +146,28 @@ export function updateInfo(data){
     for(const field of DOM.centreNumberEl){
         field.innerHTML = data["centre-number"].toString();
     }
+
+    //implement reminders
+}
+
+export function updateAccessibility(data){
+    // hour-mode; false - 24h, true - 12h
+    state.hourMode = data['hour-mode'] ? 12 : 24;
+    startClock(state.hourMode);
+
+    // dark-mode
+    if(data['dark-mode']){
+        document.body.classList.add('dark-mode');
+    }else{
+        document.body.classList.remove('dark-mode');
+    }
+
+    // accent-color
+    if(data['accent-color']){
+        document.body.style.setProperty('--accent-color', data['accent-color']);
+    }
+
+
 }
 
 setupTimerEvents(DOM, state);

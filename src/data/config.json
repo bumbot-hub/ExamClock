@@ -5,5 +5,10 @@
     "1st-reminder": "15",
     "2nd-reminder": "30"
   },
+  "accessibility": {
+    "hour-mode": true,
+    "dark-mode": false,
+    "accent-color": "#2b41e9"
+  },
   "timers": []
 }

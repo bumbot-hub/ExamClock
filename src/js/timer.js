@@ -53,7 +53,6 @@ export function startTimer(countdown, HTML, progress_bar){
     renderTime(HTML);
     updateProgressBar(progress_bar);
     startInterval(HTML, progress_bar);
-
 }
 
 export function pauseTimer(){
