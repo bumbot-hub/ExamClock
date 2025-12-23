@@ -16,12 +16,12 @@ body {
     margin: 0;
 }
 
-body.contrast_mode{
+body.contrast-mode{
     --bg-color: #FFFFFF;
     --font-color: #000000;
 }
 
-body.dark_mode{
+body.dark-mode{
     --bg-color: #121212;
     --font-color: #DFDFDF;
 }
@@ -184,7 +184,7 @@ nav{
 }
 
 /* --- Top bar --- */
-.logo_square {
+.logo-square {
     font-size: 20px;
     margin-left: 4px;
     color: var(--accent-color);
@@ -304,7 +304,7 @@ form > input:focus {
 
 
 /* --- Clock|Timer view --- */
-.exam_data, .others {
+.exam-data, .others {
     display: flex;
     flex-direction: row;
     align-items: center;

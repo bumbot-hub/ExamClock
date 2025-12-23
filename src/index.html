@@ -13,7 +13,7 @@
                 <i class="fa-solid fa-chevron-left"></i>
             </button>
         </section>
-        <h2>ExamClock<span class="logo_square">&#9632;</span></h2>
+        <h2>ExamClock<span class="logo-square">&#9632;</span></h2>
 
         <nav>
             <button class="icon">
@@ -41,25 +41,25 @@
         <h4>Settings</h4>
         <h6>Exam data</h6>
         <form name="data-settings-form">
-            <label>Exam name:</label><input name="exam_name" type="text">
+            <label>Exam name:</label><input name="exam-name" type="text">
             <br>
-            <label>Examination centre number:</label><input name="centre_number" type="text">
+            <label>Examination centre number:</label><input name="centre-number" type="text">
             <br>
-            <label>1st reminder:</label><input name="1st_time_reminder" type="number">
+            <label>1st reminder:</label><input name="1st-reminder" type="number">
             <br>
-            <label>2nd reminder:</label><input name="2nd_time_reminder" type="number">
+            <label>2nd reminder:</label><input name="2nd-reminder" type="number">
         </form>
         <h6>Accessibility</h6>
         <form name="accessibility-settings-form">
             <label>12 hour mode: </label>
             <label class="switch">
-                <input type="checkbox" id="hour_mode">
+                <input type="checkbox" id="hour-mode">
                 <span class="slider"></span>
             </label>
             <br>
             <label>Dark mode: </label>
             <label class="switch">
-                <input type="checkbox" id="dark_mode">
+                <input type="checkbox" id="dark-mode">
                 <span class="slider"></span>
             </label>
             <br>
@@ -68,31 +68,31 @@
     </section>
 
     <section class="clock hidden">
-        <div class="exam_data">
-            <h2 class="exam_name">Exam name</h2>
-            <h3 class="centre_number">Centre number</h3>
+        <div class="exam-data">
+            <h2 class="exam-name">Exam name</h2>
+            <h2 class="centre-number">Centre number</h2>
         </div>
         <h1 id="time">HH:MM:SS</h1>
         <h2 class="date">DD MONTH YYYY</h2>
     </section>
 
     <section class="timer hidden">
-        <div id="timer_popup">
+        <div id="timer-popup">
             <div class="pop-up hidden" id="input">
                 <h5>Enter exam duration: </h5>
-                <input type="time" id="countdown_input" value="00:00">
-                <input type="text" id="component_input" placeholder="component name">
-                <button id="start_timer">Start</button>
+                <input type="time" id="countdown-input" value="00:00">
+                <input type="text" id="component-input" placeholder="component name">
+                <button id="start-timer">Start</button>
             </div>
             <div class="pop-up hidden" id="reminder">
                 <h5>Your time has ended</h5>
-                <button id="ok_btn">OK</button>
+                <button id="ok-btn">OK</button>
             </div>
         </div>
 
-        <div class="exam_data">
-            <h2 class="exam_name">Exam name</h2>
-            <h2 class="centre_number">Centre number</h2>
+        <div class="exam-data">
+            <h2 class="exam-name">Exam name</h2>
+            <h2 class="centre-number">Centre number</h2>
         </div>
 
         <div class="others">
@@ -106,16 +106,16 @@
         <nav class="timer-nav hidden">
             <div id="reminders"></div>
             <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="timer_progress"></div>
+                <div class="progress-bar-fill" id="timer-progress"></div>
             </div>
             <div class="buttons">
-                <i class="fa-solid fa-pause" id="play_pause"></i>
+                <i class="fa-solid fa-pause" id="play-pause"></i>
                 <i class="fa-solid fa-stop" id="reset"></i>
             </div>
         </nav>
     </section>
 </body>
-<script type="module" src="js/renderer.js"></script>
+<script type="module" src="js/app.js"></script>
 <script type="module" src="js/settings_data.js"></script>
 <script type="module" src="js/clock.js"></script>
 <script type="module" src="js/timer.js"></script>

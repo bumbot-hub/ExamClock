@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron');
 const { ipcMain } = require('electron');
 const fs = require('fs');
 const path = require('path');
+const filePath = __dirname + "/data/config.json";
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -15,7 +16,6 @@ const createWindow = () => {
     });
 
     win.maximize();
-
     win.loadFile('src/index.html');
 }
 
@@ -35,10 +35,6 @@ app.on('window-all-closed', () => {
     }
 });
 
-
-
-const filePath = __dirname + "/data/config.json"
-
 ipcMain.handle('get-settings-data', () => {
     const jsonFile = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(jsonFile);
@@ -50,7 +46,7 @@ ipcMain.on('updated-settings', (event, data) =>{
         if (!fs.existsSync(folderPath)) {
             fs.mkdirSync(folderPath, { recursive: true });
         }
-        fs.writeFileSync(filePath, JSON.stringify(data), 'utf8');
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
     } catch(error){
         console.error(error);
     }
