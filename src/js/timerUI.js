@@ -1,13 +1,15 @@
-import {endTimer, pauseTimer, resumeTimer, startTimer} from "./timer.js";
+import {endTimer, pauseTimer, resumeTimer, startTimer, remainingTime} from "./timer.js";
 import {toggleClasses} from "./utils.js";
 
 export function setupTimerEvents(DOM, appState){
     DOM.timerBtn.addEventListener("click", () => {
-        DOM.timerPopup.classList.remove("hidden");
-        DOM.timerPopup.children[0].classList.remove("hidden");
+        if(remainingTime === 0){
+            DOM.timerPopup.classList.remove("hidden");
+            DOM.timerPopup.children[0].classList.remove("hidden");
 
-        DOM.resetBtn.classList.replace(DOM.resetBtn.classList[1], "fa-stop");
-        DOM.playPauseBtn.classList.replace(DOM.playPauseBtn.classList[1], "fa-pause");
+            DOM.resetBtn.classList.replace(DOM.resetBtn.classList[1], "fa-stop");
+            DOM.playPauseBtn.classList.replace(DOM.playPauseBtn.classList[1], "fa-pause");
+        }
     });
 
     DOM.startTimerBtn.addEventListener("click", () => {
