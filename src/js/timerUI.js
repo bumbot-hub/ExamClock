@@ -12,7 +12,7 @@ export function setupTimerEvents(DOM, appState){
         }
     });
 
-    DOM.startTimerBtn.addEventListener("click", () => {
+    const startTimerHandler = () => {
         document.getElementsByClassName("timer-nav")[0].classList.remove("hidden");
 
         DOM.componentField.innerHTML = DOM.componentInput.value;
@@ -21,6 +21,15 @@ export function setupTimerEvents(DOM, appState){
         DOM.timerPopup.classList.add("hidden");
         DOM.timerPopup.children[0].classList.add("hidden");
         appState.isRunning = true;
+    };
+
+
+    DOM.startTimerBtn.addEventListener("click", startTimerHandler);
+    DOM.componentInput.addEventListener("keydown", (event) => {
+        if(event.code === "Enter"){
+            event.preventDefault();
+            startTimerHandler();
+        }
     });
 
     DOM.playPauseBtn.addEventListener("click", () => {
