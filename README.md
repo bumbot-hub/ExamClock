@@ -1,5 +1,3 @@
-# ExamClock ⏰
-
 ![Header image](/assets/images/header.png)
 
 ---
@@ -24,33 +22,28 @@
 #### ⏱️ Timer
 - Countdown from a preset duration
 - Two configurable alarms at specified time intervals
-- Pause and resume functionality
 - Visual progress bar
-- All parameters (time, alarms) are customizable
 
 #### 🕑 Clock
 - Display current time in 12h or 24h mode
 - Continuous operation during exam
-- Standard timekeeping
 
 ### 👤 Personalization
 
 - Ability to enter **exam name** and **exam center number**
-- Automatic loading of data from JSON configuration file (if values are not entered manually)
+- Automatic loading of data from JSON configuration file
 - **Customizable colors** for the application
-- **Font selection**
 - **Contrast mode** for enhanced accessibility
+- **Dark mode**
 
-### 🎨 Dark Mode
-
-- Toggle between light and dark mode
-- Automatic adjustment to system preferences
 
 ### ⚙️ Configuration
 
 - `config.json` configuration file for storing user data
 - Variable settings saved locally
 
+### 📷 Screenshots
+![Screens of app](/assets/images/ss.png)
 ---
 
 ## 🚀 Installation
@@ -108,7 +101,7 @@ examclock/
 │   ├── js/
 │   │   ├── timer.js            # Timer functions
 │   │   ├── clock.js            # Clock functions
-│   │   ├── app.js         # Renderer process (events)
+│   │   ├── app.js              # Renderer process (events)
 │   │   └── settings_data.js    # Settings management
 │   └── data/
 │       └── config.json         # Configuration file
@@ -125,12 +118,18 @@ The application uses the `data/config.json` file to store user settings:
 
 ```json
 {
-  "settings": {
-    "exam_name": "Mathematics",
-    "centre_number": "12345",
-    "theme": "light",
-    "hour_mode": 24
-  }
+   "settings": {
+      "exam-name": "C1 Advanced",
+      "centre-number": "PL006",
+      "1st-reminder": "30",
+      "2nd-reminder": "10"
+   },
+   "accessibility": {
+      "hour-mode": false,
+      "dark-mode": false,
+      "accent-color": "#3691f2"
+   },
+   "timers": []
 }
 ```
 
@@ -166,14 +165,14 @@ npm run build    # Builds the application for distribution
 
 ## 🐛 Known Issues
 
-- When exiting to the main menu during timer operation, an unnecessary popup appears to restart the timer **(Resolved)**
-
+- Navigating back to the timer from the home screen while it's active may incorrectly display the "Pause" button while the timer is actually paused.
 ---
 
 ## 📋 Planned Features
 
-- [ ] More settings remembered in file 
-- [ ] Code structure improvement
+- [ ] Improve UX by adding keyboard interactions with timer
+- [x] More settings remembered in file 
+- [x] Code structure improvement
 - [ ] Add reminders for timer
 - [ ] Create history for timers
 
