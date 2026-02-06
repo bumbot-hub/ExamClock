@@ -395,6 +395,31 @@ form > input:focus {
     cursor: pointer;
 }
 
+/* --- Reminder --- */
+#reminders{
+    position: absolute;
+    width: 65%;
+    margin-left: 5%;
+    display: flex;
+}
+
+.reminder{
+    position: relative;
+    height: 28px;
+    width: 12px;
+    top: -8px;
+    border-radius: 4px;
+    background-color: gold;
+}
+
+#first{
+    left: 0;
+}
+
+#second{
+    left: 0;
+}
+
 .hidden {
     display: none;
 }

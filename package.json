@@ -1,6 +1,6 @@
 {
   "name": "examclock",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "An app for examination centres to show time to candidates",
   "main": "src/main.js",
   "scripts": {

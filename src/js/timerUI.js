@@ -16,7 +16,7 @@ export function setupTimerEvents(DOM, appState){
         document.getElementsByClassName("timer-nav")[0].classList.remove("hidden");
 
         DOM.componentField.innerHTML = DOM.componentInput.value;
-        startTimer(DOM.countdownInput.value, DOM.countdownField, DOM.progressBar);
+        startTimer(DOM.countdownInput.value, DOM.countdownField, DOM.progressBar, [appState.reminder1, appState.reminder2], DOM.remindersContainer);
 
         DOM.timerPopup.classList.add("hidden");
         DOM.timerPopup.children[0].classList.add("hidden");

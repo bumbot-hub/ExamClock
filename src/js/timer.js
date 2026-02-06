@@ -3,6 +3,7 @@ import {toggleClasses} from "./utils.js";
 let intervalId = null;
 export let remainingTime = 0;
 let fullTime = 0;
+let reminders = [];
 
 function renderTime(HTML) {
     const h   = Math.floor(remainingTime / 3600);
@@ -42,13 +43,18 @@ function startInterval(HTML, progress_bar) {
     }, 1000);
 }
 
-export function startTimer(countdown, HTML, progress_bar){
+export function startTimer(countdown, HTML, progress_bar, reminders){
     fullTime =
         parseInt(countdown.slice(0,2), 10) * 3600 +
         parseInt(countdown.slice(3,5), 10) * 60;
 
     if(remainingTime === 0){
         remainingTime = fullTime;
+    }
+
+    for(const r of reminders){
+        setupReminders(r);
+
     }
     //sprawdzam czy czas == reminderowi z argumentow
     renderTime(HTML);
@@ -82,4 +88,8 @@ export function endTimer(HTML, progress_bar, icon){
     document.getElementById('pop-up-content').innerText = "The time has ended.";
     document.getElementById('reminder').classList.remove('hidden');
     toggleClasses(icon, 'fa-stop', 'fa-arrow-rotate-right');
+}
+
+function setupReminders(time){
+    //if(re)
 }
