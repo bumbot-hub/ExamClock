@@ -1,7 +1,9 @@
 /* --- Global variables + general style --- */
 :root {
     --bg-color: #DFD0C3;
+    --sec-color: #F8E9DC;
     --font-color: #121212;
+    --sec-font-color: #404040;
     --accent-color: #F27938;
 }
 
@@ -23,6 +25,7 @@ body.contrast-mode{
 
 body.dark-mode{
     --bg-color: #121212;
+    --sec-color: #404040;
     --font-color: #DFDFDF;
 }
 
@@ -164,16 +167,11 @@ nav{
 }
 
 .pop-up{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--accent-color);
-    padding: 64px 182px;
-    border-radius: 12px;
+    background-color: var(--sec-color);
+    padding: 64px 128px;
+    border-radius: 20px;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    gap: 48px;
 }
 
 #modes {
@@ -323,42 +321,56 @@ form > input:focus {
 }
 
 .pop-up > h5{
-    color: var(--bg-color);
+    color: var(--font-color);
     text-align: center;
     margin-bottom: 24px;
 }
 
-.pop-up form{
+.pop-up > form{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 24px;
 }
 
-.pop-up input{
+.pop-up > form > input{
     font-size: 24px;
     margin-bottom: 8px;
     border: none;
     border-radius: 24px;
     background-color: var(--bg-color);
-    color: var(--font-color);
+    color: var(--sec-font-color);
     padding: 8px 16px;
 }
 
-.pop-up input:focus{
+.pop-up > form > input:focus{
     outline: none;
 }
 
-.pop-up button{
-    font-size: 32px;
+.pop-up  button{
+    font-size: 24px;
     font-weight: 500;
-    border: 2px solid var(--font-color);
-    border-radius: 24px;
-    color: var(--bg-color);
-    background-color: var(--font-color);
+    border-radius: 12px;
+    padding: 8px;
+    border: 1px solid var(--accent-color);
+    color: var(--font-color);
+    background-color: var(--accent-color);
     cursor: pointer;
 }
 
-.pop-up button:hover{
-    color: var(--accent-color);
+.center{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+}
+
+.right-top{
+    position: fixed;
+    right: 52px;
+    margin-top: -32px;
+    flex-direction: row;
 }
 
 .progress-bar-container {

@@ -79,14 +79,20 @@
 
     <section class="timer hidden">
         <div id="timer-popup">
-            <div class="pop-up hidden" id="input">
-                <h5>Enter exam duration: </h5>
-                <input type="time" id="countdown-input" value="00:00">
-                <input type="text" id="component-input" placeholder="component name">
-                <button id="start-timer">Start</button>
+            <div class="pop-up hidden center" id="input">
+                <h5>Exam details:</h5>
+                <form>
+                    <input type="time" id="countdown-input" value="00:00">
+                    <input type="text" id="component-input" placeholder="Component's name">
+                    <button id="start-timer">Start</button>
+                </form>
             </div>
-            <div class="pop-up hidden" id="reminder">
-                <h5 id="pop-up-content"></h5>
+            <div class="pop-up hidden right-top" id="reminder">
+                <i class="fa-solid fa-bell"></i>
+                <div>
+                    <h5 id="pop-up-content">XX minutes left!</h5>
+                    <p>Do not forget to inform candidates ;)</p>
+                </div>
                 <button id="ok-btn">OK</button>
             </div>
         </div>
