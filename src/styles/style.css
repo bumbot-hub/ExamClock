@@ -53,7 +53,7 @@ body.dark-mode{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: var(--sec-color);
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 20px;
@@ -168,7 +168,6 @@ nav{
 
 .pop-up{
     background-color: var(--sec-color);
-    padding: 64px 128px;
     border-radius: 20px;
     display: flex;
     gap: 48px;
@@ -248,8 +247,8 @@ form > *{
     font-weight: 600;
 }
 
-form > input[type="text"],
-form > input[type="number"],
+.settings > form > input[type="text"],
+.settings > form > input[type="number"],
 input[type="color"] {
     border: none;
     background: none;
@@ -258,11 +257,11 @@ input[type="color"] {
 
 }
 
-form > input[type="color"]{
+.settings > form > input[type="color"]{
     cursor: pointer;
 }
 
-form > input[type="button"]{
+.settings > form > input[type="button"]{
     cursor: pointer;
     background-color: var(--font-color);
     color: var(--bg-color);
@@ -274,11 +273,11 @@ form > input[type="button"]{
     font-weight: 500;
 }
 
-form > input[type="text"]{
+.settings > form > input[type="text"]{
     width: 30%;
 }
 
-form > input[type="number"]{
+.settings > form > input[type="number"]{
     width: 7%;
 }
 
@@ -326,11 +325,13 @@ form > input:focus {
     margin-bottom: 24px;
 }
 
-.pop-up > form{
+.pop-up > form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: 24px;
+    width: 100%;
+    max-width: 400px;
 }
 
 .pop-up > form > input{
@@ -351,11 +352,17 @@ form > input:focus {
     font-size: 24px;
     font-weight: 500;
     border-radius: 12px;
-    padding: 8px;
+    padding: 8px 42px;
     border: 1px solid var(--accent-color);
     color: var(--font-color);
     background-color: var(--accent-color);
     cursor: pointer;
+    align-self: center;
+}
+
+i.fa-bell{
+    font-size: 82px;
+    color: var(--accent-color);
 }
 
 .center{
@@ -364,13 +371,32 @@ form > input:focus {
     left: 50%;
     transform: translate(-50%, -50%);
     flex-direction: column;
+    padding: 52px 128px;
 }
 
 .right-top{
     position: fixed;
     right: 52px;
-    margin-top: -32px;
+    margin-top: -64px;
     flex-direction: row;
+    align-items: center;
+    padding: 42px 32px;
+    gap: 32px;
+}
+
+.right-top > *:last-child{
+    margin-left: 32px;
+}
+
+#reminder > div{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#reminder > div > *{
+    text-align: left;
+    margin: 0;
 }
 
 .progress-bar-container {
