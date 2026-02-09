@@ -85,6 +85,16 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
+/* Hide clock icon */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+input[type="time"]::-webkit-inner-spin-button {
+    display: none;
+}
+
 /* Rounded sliders */
 .slider.round {
     border-radius: 34px;
