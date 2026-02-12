@@ -3,17 +3,7 @@ import {toggleClasses} from "./utils.js";
 import { refreshMarkersUI } from "./app.js";
 
 export function setupTimerEvents(DOM, appState){
-    DOM.timerBtn.addEventListener("click", () => {
-        if(remainingTime === 0){
-            DOM.popups.classList.remove("hidden");
-            DOM.popups.children[0].classList.remove("hidden");
-
-            DOM.resetBtn.classList.replace(DOM.resetBtn.classList[1], "fa-stop");
-            DOM.playPauseBtn.classList.replace(DOM.playPauseBtn.classList[1], "fa-pause");
-        }
-    });
-
-    DOM.startTimerBtn.addEventListener("click", () => {
+    const timerHandler = () => {
         const remindersValue= getReminders();
 
         document.getElementsByClassName("timer-nav")[0].classList.remove("hidden");
@@ -26,14 +16,26 @@ export function setupTimerEvents(DOM, appState){
 
         DOM.popups.classList.add("hidden");
         DOM.popups.children[0].classList.add("hidden");
-    };
+    }
 
+    DOM.timerBtn.addEventListener("click", () => {
+        if(remainingTime === 0){
+            DOM.popups.classList.remove("hidden");
+            DOM.popups.children[0].classList.remove("hidden");
 
-    DOM.startTimerBtn.addEventListener("click", startTimerHandler);
+            DOM.resetBtn.classList.replace(DOM.resetBtn.classList[1], "fa-stop");
+            DOM.playPauseBtn.classList.replace(DOM.playPauseBtn.classList[1], "fa-pause");
+        }
+    });
+
+    DOM.startTimerBtn.addEventListener("click", () => {
+        timerHandler();
+    });
+
     DOM.componentInput.addEventListener("keydown", (event) => {
         if(event.code === "Enter"){
             event.preventDefault();
-            startTimerHandler();
+            timerHandler();
         }
     });
 
