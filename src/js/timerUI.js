@@ -26,6 +26,15 @@ export function setupTimerEvents(DOM, appState){
 
         DOM.popups.classList.add("hidden");
         DOM.popups.children[0].classList.add("hidden");
+    };
+
+
+    DOM.startTimerBtn.addEventListener("click", startTimerHandler);
+    DOM.componentInput.addEventListener("keydown", (event) => {
+        if(event.code === "Enter"){
+            event.preventDefault();
+            startTimerHandler();
+        }
     });
 
     DOM.playPauseBtn.addEventListener("click", () => {

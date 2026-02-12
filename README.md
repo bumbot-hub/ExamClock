@@ -24,14 +24,11 @@
 #### ⏱️ Timer
 - Countdown from a preset duration
 - Two configurable alarms at specified time intervals
-- Pause and resume functionality
 - Visual progress bar
-- All parameters (time, alarms) are customizable
 
 #### 🕑 Clock
 - Display current time in 12h or 24h mode
 - Continuous operation during exam
-- Standard timekeeping
 
 ### 👤 Personalization
 
@@ -45,6 +42,8 @@
 - `config.json` configuration file for storing user data
 - Variable settings saved locally
 
+### 📷 Screenshots
+![Screens of app](/assets/images/ss.png)
 ---
 
 ## 🚀 Installation
@@ -124,15 +123,15 @@ The application uses the `data/config.json` file to store user settings.
 ```json
 {
    "settings": {
-      "exam-name": "Analisys 2.1B",
-      "centre-number": "WRO_04",
+      "exam-name": "C1 Advanced",
+      "centre-number": "PL006",
       "1st-reminder": "30",
-      "2nd-reminder": "5"
+      "2nd-reminder": "10"
    },
    "accessibility": {
       "hour-mode": false,
-      "dark-mode": true,
-      "accent-color": "#F27938"
+      "dark-mode": false,
+      "accent-color": "#3691f2"
    },
    "timers": []
 }
@@ -170,12 +169,12 @@ npm run build    # Builds the application for distribution
 
 ## 🐛 Known Issues
 
-- [x] When exiting to the main menu during timer operation, an unnecessary popup appears to restart the timer **(Resolved)**
-
+- [] Navigating back to the timer from the home screen while it's active may incorrectly display the "Pause" button while the timer is actually paused.
 ---
 
 ## 📋 Planned Features
 
+- [ ] Improve UX by adding keyboard interactions with timer
 - [x] More settings remembered in file 
 - [x] Code structure improvement
 - [ ] Add reminders for timer
