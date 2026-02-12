@@ -1,11 +1,12 @@
-import {endTimer, pauseTimer, resumeTimer, startTimer, remainingTime, getReminderPercentage} from "./timer.js";
+import {endTimer, pauseTimer, resumeTimer, startTimer, remainingTime} from "./timer.js";
 import {toggleClasses} from "./utils.js";
+import { refreshMarkersUI } from "./app.js";
 
 export function setupTimerEvents(DOM, appState){
     DOM.timerBtn.addEventListener("click", () => {
         if(remainingTime === 0){
-            DOM.timerPopup.classList.remove("hidden");
-            DOM.timerPopup.children[0].classList.remove("hidden");
+            DOM.popups.classList.remove("hidden");
+            DOM.popups.children[0].classList.remove("hidden");
 
             DOM.resetBtn.classList.replace(DOM.resetBtn.classList[1], "fa-stop");
             DOM.playPauseBtn.classList.replace(DOM.playPauseBtn.classList[1], "fa-pause");
@@ -18,23 +19,13 @@ export function setupTimerEvents(DOM, appState){
         document.getElementsByClassName("timer-nav")[0].classList.remove("hidden");
 
         DOM.componentField.innerHTML = DOM.componentInput.value;
-        startTimer(DOM.countdownInput.value, DOM.countdownField, DOM.progressBar, remindersValue, DOM.remindersContainer);
+
+        startTimer(DOM.countdownInput.value, DOM.countdownField, DOM.progressBar, remindersValue);
         appState.isRunning = true;
+        refreshMarkersUI();
 
-        DOM.timerPopup.classList.add("hidden");
-        DOM.timerPopup.children[0].classList.add("hidden");
-
-        remindersValue.forEach((min, index) => {
-            if (min > 0) {
-                const percent = getReminderPercentage(min);
-                const marker = index === 0 ? DOM.firstReminder : DOM.secondReminder;
-
-                if (marker) {
-                    marker.style.left = `${percent}%`;
-                    marker.classList.remove("hidden");
-                }
-            }
-        });
+        DOM.popups.classList.add("hidden");
+        DOM.popups.children[0].classList.add("hidden");
     });
 
     DOM.playPauseBtn.addEventListener("click", () => {
@@ -50,14 +41,17 @@ export function setupTimerEvents(DOM, appState){
     DOM.resetBtn.addEventListener("click", () => {
         if(DOM.resetBtn.classList.contains('fa-stop')){
             endTimer(DOM.countdownField, DOM.progressBar, DOM.resetBtn);
+            Array.from(DOM.popups.children).forEach(popup => {
+                popup.classList.add("hidden");
+            });
         }else if(DOM.resetBtn.classList.contains('fa-arrow-rotate-right')){
             DOM.timerBtn.click();                       // Simulating clicking on timer button for popup to show
         }
     });
 
     DOM.okBtn.addEventListener("click", () => {
-        DOM.timerPopup.classList.add("hidden");
-        DOM.timerPopup.children[1].classList.add("hidden");
+        DOM.popups.classList.add("hidden");
+        DOM.popups.children[1].classList.add("hidden");
     });
 }
 

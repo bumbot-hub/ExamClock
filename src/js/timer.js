@@ -1,20 +1,11 @@
-import {toggleClasses} from "./utils.js";
+import {toggleClasses, formatSecondsToTime, parseTimeToSeconds} from "./utils.js";
 
 let intervalId = null;
 export let remainingTime = 0;
 let fullTime = 0;
-let reminders = [];
 
 function renderTime(HTML) {
-    const h   = Math.floor(remainingTime / 3600);
-    const min = Math.floor((remainingTime % 3600) / 60);
-    const s   = remainingTime % 60;
-
-    HTML.innerHTML = [
-        h.toString().padStart(2, '0'),
-        min.toString().padStart(2, '0'),
-        s.toString().padStart(2, '0')
-    ].join(':');
+    HTML.innerHTML = formatSecondsToTime(remainingTime);
 }
 
 function updateProgressBar(progressBar) {
@@ -29,7 +20,7 @@ function updateProgressBar(progressBar) {
     }
 }
 
-function startInterval(HTML, progress_bar) {
+function startInterval(HTML, progress_bar, reminders) {
     if (intervalId) clearInterval(intervalId);
 
     intervalId = setInterval(() => {
@@ -39,27 +30,26 @@ function startInterval(HTML, progress_bar) {
             remainingTime--;
             updateProgressBar(progress_bar);
             renderTime(HTML);
+
+            for(let r of reminders){
+                if((r*60) === remainingTime){
+                    showReminderPopup(r);
+                }
+            }
         }
     }, 1000);
 }
 
 export function startTimer(countdown, HTML, progress_bar, reminders){
-    fullTime =
-        parseInt(countdown.slice(0,2), 10) * 3600 +
-        parseInt(countdown.slice(3,5), 10) * 60;
+    fullTime = parseTimeToSeconds(countdown);
 
-    console.log(reminders);
-    if(remainingTime === 0){
+    if (remainingTime === 0) {
         remainingTime = fullTime;
     }
 
-    for(let r of reminders){
-        setupReminders(r);
-    }
-    //sprawdzam czy czas == reminderowi z argumentow
     renderTime(HTML);
     updateProgressBar(progress_bar);
-    startInterval(HTML, progress_bar);
+    startInterval(HTML, progress_bar, reminders);
 }
 
 export function pauseTimer(){
@@ -84,18 +74,23 @@ export function endTimer(HTML, progress_bar, icon){
     progress_bar.style.width = '0%';
     HTML.innerHTML = '00:00:00';
 
-    document.getElementById('timer-popup').classList.remove('hidden');
-    document.getElementById('pop-up-content').innerText = "The time has ended.";
-    document.getElementById('reminder').classList.remove('hidden');
+    showReminderPopup(-1);
     toggleClasses(icon, 'fa-stop', 'fa-arrow-rotate-right');
-}
-
-function setupReminders(time){
-    //if(re)
 }
 
 export function getReminderPercentage(reminderMinutes) {
     if (!fullTime) return 0;
     const reminderSeconds = reminderMinutes * 60;
     return (reminderSeconds / fullTime) * 100;
+}
+
+function showReminderPopup(r){
+    let innerTxt = `${r} minutes left!`;
+    if(r === -1){
+        innerTxt = `The time has ended.`;
+    }
+
+    document.getElementById('timer-popup').classList.remove('hidden');
+    document.getElementById('pop-up-content').innerText = innerTxt;
+    document.getElementById('reminder').classList.remove('hidden');
 }
