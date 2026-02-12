@@ -457,7 +457,7 @@ i.fa-bell{
     width: 12px;
     top: -8px;
     border-radius: 4px;
-    background-color: gold;
+    background-color: var(--sec-font-color);
 }
 
 #first{

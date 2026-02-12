@@ -30,14 +30,15 @@ const DOM = {
     resetBtn: document.getElementById('reset'),
     startTimerBtn: document.getElementById('start-timer'),
     timerPopup: document.getElementById('timer-popup'),
+
+    firstReminder: document.getElementById('first'),
+    secondReminder: document.getElementById('second')
 };
 
 let state = {
     hourMode: 24,
     isTimerRunning: false,
     historyStack: [], // Stack of visited sites for goBack() function
-    reminder1: 0,
-    reminder2: 0
 };
 
 const pageChangerBtn = [

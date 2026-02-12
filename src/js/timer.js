@@ -48,13 +48,13 @@ export function startTimer(countdown, HTML, progress_bar, reminders){
         parseInt(countdown.slice(0,2), 10) * 3600 +
         parseInt(countdown.slice(3,5), 10) * 60;
 
+    console.log(reminders);
     if(remainingTime === 0){
         remainingTime = fullTime;
     }
 
-    for(const r of reminders){
+    for(let r of reminders){
         setupReminders(r);
-
     }
     //sprawdzam czy czas == reminderowi z argumentow
     renderTime(HTML);
@@ -92,4 +92,10 @@ export function endTimer(HTML, progress_bar, icon){
 
 function setupReminders(time){
     //if(re)
+}
+
+export function getReminderPercentage(reminderMinutes) {
+    if (!fullTime) return 0;
+    const reminderSeconds = reminderMinutes * 60;
+    return (reminderSeconds / fullTime) * 100;
 }

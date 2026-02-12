@@ -84,16 +84,16 @@
                 <form>
                     <input type="time" id="countdown-input" value="00:00">
                     <input type="text" id="component-input" placeholder="Component's name">
-                    <button id="start-timer">Start</button>
+                    <button type="button" id="start-timer">Start</button>
                 </form>
             </div>
-            <div class="pop-up right-top" id="reminder">
+            <div class="pop-up hidden right-top" id="reminder">
                 <i class="fa-solid fa-bell"></i>
                 <div>
                     <h5 id="pop-up-content">15 minutes left!</h5>
                     <p>Do not forget to inform candidates ;)</p>
                 </div>
-                <button id="ok-btn">OK</button>
+                <button type="button" id="ok-btn">OK</button>
             </div>
         </div>
 
@@ -112,8 +112,8 @@
 
         <nav class="timer-nav hidden">
             <div id="reminders" class="hidden">
-                <div class="reminder" id="first"></div>
-                <div class="reminder" id="second"></div>
+                <div class="reminder hidden" id="first"></div>
+                <div class="reminder hidden" id="second"></div>
             </div>
             <div class="progress-bar-container">
                 <div class="progress-bar-fill" id="timer-progress">
