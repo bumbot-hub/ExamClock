@@ -1,9 +1,9 @@
 import {endTimer, pauseTimer, resumeTimer, startTimer, remainingTime} from "./timer.js";
-import {toggleClasses} from "./utils.js";
+import {getVisibleSection, toggleClasses} from "./utils.js";
 import { refreshMarkersUI } from "./app.js";
 
 export function setupTimerEvents(DOM, appState){
-    const timerHandler = () => {
+    const initializeTimer = () => {
         const remindersValue= getReminders();
 
         document.getElementsByClassName("timer-nav")[0].classList.remove("hidden");
@@ -18,6 +18,16 @@ export function setupTimerEvents(DOM, appState){
         DOM.popups.children[0].classList.add("hidden");
     }
 
+    const togglePause = () => {
+        if(appState.isRunning){
+            pauseTimer();
+        }else{
+            resumeTimer(DOM.countdownField, DOM.progressBar);
+        }
+        toggleClasses(DOM.playPauseBtn, 'fa-pause', 'fa-play');
+        appState.isRunning = !appState.isRunning;
+    }
+
     DOM.timerBtn.addEventListener("click", () => {
         if(remainingTime === 0){
             DOM.popups.classList.remove("hidden");
@@ -29,25 +39,36 @@ export function setupTimerEvents(DOM, appState){
     });
 
     DOM.startTimerBtn.addEventListener("click", () => {
-        timerHandler();
+        initializeTimer();
     });
 
     DOM.componentInput.addEventListener("keydown", (event) => {
         if(event.code === "Enter"){
             event.preventDefault();
-            timerHandler();
+            initializeTimer();
         }
     });
 
     DOM.playPauseBtn.addEventListener("click", () => {
-        if(appState.isRunning){
-            pauseTimer();
-        }else{
-            resumeTimer(DOM.countdownField, DOM.progressBar);
-        }
-        toggleClasses(DOM.playPauseBtn, 'fa-pause', 'fa-play');
-        appState.isRunning = !appState.isRunning;
+        togglePause();
     });
+
+    window.addEventListener("keydown", (event) => {
+        if(event.code === "Space"){
+            const currentSection = getVisibleSection();
+
+            if (currentSection.classList.contains("timer") && remainingTime > 0) {
+                event.preventDefault();
+                togglePause();
+            }
+        }
+    })
+
+    DOM.backBtn.addEventListener("click", () => {
+        if(appState.isRunning){
+            togglePause();
+        }
+    })
 
     DOM.resetBtn.addEventListener("click", () => {
         if(DOM.resetBtn.classList.contains('fa-stop')){
