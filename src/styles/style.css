@@ -1,7 +1,9 @@
 /* --- Global variables + general style --- */
 :root {
     --bg-color: #DFD0C3;
+    --sec-color: #F8E9DC;
     --font-color: #121212;
+    --sec-font-color: #404040;
     --accent-color: #F27938;
 }
 
@@ -23,6 +25,7 @@ body.contrast-mode{
 
 body.dark-mode{
     --bg-color: #121212;
+    --sec-color: #404040;
     --font-color: #DFDFDF;
 }
 
@@ -50,7 +53,7 @@ body.dark-mode{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: var(--sec-color);
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 20px;
@@ -80,6 +83,16 @@ input:focus + .slider {
 input:checked + .slider:before {
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+}
+
+/* Hide clock icon */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+input[type="time"]::-webkit-inner-spin-button {
+    display: none;
 }
 
 /* Rounded sliders */
@@ -164,16 +177,10 @@ nav{
 }
 
 .pop-up{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--accent-color);
-    padding: 64px 182px;
-    border-radius: 12px;
+    background-color: var(--sec-color);
+    border-radius: 20px;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
+    gap: 48px;
 }
 
 #modes {
@@ -250,8 +257,8 @@ form > *{
     font-weight: 600;
 }
 
-form > input[type="text"],
-form > input[type="number"],
+.settings > form > input[type="text"],
+.settings > form > input[type="number"],
 input[type="color"] {
     border: none;
     background: none;
@@ -260,11 +267,11 @@ input[type="color"] {
 
 }
 
-form > input[type="color"]{
+.settings > form > input[type="color"]{
     cursor: pointer;
 }
 
-form > input[type="button"]{
+.settings > form > input[type="button"]{
     cursor: pointer;
     background-color: var(--font-color);
     color: var(--bg-color);
@@ -276,11 +283,11 @@ form > input[type="button"]{
     font-weight: 500;
 }
 
-form > input[type="text"]{
+.settings > form > input[type="text"]{
     width: 30%;
 }
 
-form > input[type="number"]{
+.settings > form > input[type="number"]{
     width: 7%;
 }
 
@@ -323,42 +330,83 @@ form > input:focus {
 }
 
 .pop-up > h5{
-    color: var(--bg-color);
+    color: var(--font-color);
     text-align: center;
     margin-bottom: 24px;
 }
 
-.pop-up form{
+.pop-up > form {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    width: 100%;
+    max-width: 400px;
 }
 
-.pop-up input{
+.pop-up > form > input{
     font-size: 24px;
     margin-bottom: 8px;
     border: none;
     border-radius: 24px;
     background-color: var(--bg-color);
-    color: var(--font-color);
+    color: var(--sec-font-color);
     padding: 8px 16px;
 }
 
-.pop-up input:focus{
+.pop-up > form > input:focus{
     outline: none;
 }
 
-.pop-up button{
-    font-size: 32px;
+.pop-up  button{
+    font-size: 24px;
     font-weight: 500;
-    border: 2px solid var(--font-color);
-    border-radius: 24px;
-    color: var(--bg-color);
-    background-color: var(--font-color);
+    border-radius: 12px;
+    padding: 8px 42px;
+    border: 1px solid var(--accent-color);
+    color: var(--font-color);
+    background-color: var(--accent-color);
     cursor: pointer;
+    align-self: center;
 }
 
-.pop-up button:hover{
+i.fa-bell{
+    font-size: 82px;
     color: var(--accent-color);
+}
+
+.center{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    padding: 52px 128px;
+}
+
+.right-top{
+    position: fixed;
+    right: 52px;
+    margin-top: -64px;
+    flex-direction: row;
+    align-items: center;
+    padding: 42px 32px;
+    gap: 32px;
+}
+
+.right-top > *:last-child{
+    margin-left: 32px;
+}
+
+#reminder > div{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#reminder > div > *{
+    text-align: left;
+    margin: 0;
 }
 
 .progress-bar-container {
@@ -393,6 +441,31 @@ form > input:focus {
     margin-left: 16px;
     color: var(--accent-color);
     cursor: pointer;
+}
+
+/* --- Reminder --- */
+#reminders{
+    position: absolute;
+    width: 65%;
+    margin-left: 5%;
+    display: flex;
+}
+
+.reminder{
+    position: relative;
+    height: 28px;
+    width: 12px;
+    top: -8px;
+    border-radius: 4px;
+    background-color: var(--sec-font-color);
+}
+
+#first{
+    left: 0;
+}
+
+#second{
+    left: 0;
 }
 
 .hidden {

@@ -1,7 +1,7 @@
 import {startClock, stopClock} from './clock.js';
 import {getVisibleSection, createContrastColor, toggleClasses} from './utils.js'
 import {setupTimerEvents} from "./timerUI.js";
-import {pauseTimer} from "./timer.js";
+import {pauseTimer, getReminderPercentage} from "./timer.js";
 
 const DOM = {
     // Global buttons
@@ -26,15 +26,21 @@ const DOM = {
     okBtn: document.getElementById('ok-btn'),
     playPauseBtn: document.getElementById('play-pause'),
     progressBar: document.getElementById('timer-progress'),
+    popups: document.getElementById('timer-popup'),
+    remindersContainer: document.getElementById('reminders'),
     resetBtn: document.getElementById('reset'),
     startTimerBtn: document.getElementById('start-timer'),
-    timerPopup: document.getElementById('timer-popup'),
+
+    firstReminder: document.getElementById('first'),
+    secondReminder: document.getElementById('second')
 };
 
 let state = {
     hourMode: 24,
     isTimerRunning: false,
-    historyStack: [] // Stack of visited sites for goBack() function
+    historyStack: [], // Stack of visited sites for goBack() function
+    reminder1: 0,
+    reminder2: 0,
 };
 
 const pageChangerBtn = [
@@ -136,14 +142,35 @@ DOM.clockBtn.addEventListener("click", () => {
 
 export function updateInfo(data){
     for(const field of DOM.examNameEl){
-        field.innerHTML = data["exam-name"].toString();
+        field.innerHTML = data["exam-name"] ? data["exam-name"].toString() : "";
     }
 
     for(const field of DOM.centreNumberEl){
-        field.innerHTML = data["centre-number"].toString();
+        field.innerHTML = data["centre-number"] ? data["centre-number"].toString() : "";
     }
 
-    //implement reminders
+    state.reminder1 = Number.parseInt(data['1st-reminder'], 10) || 0;
+    state.reminder2 = Number.parseInt(data['2nd-reminder'], 10) || 0;
+    refreshMarkersUI();
+}
+
+export function refreshMarkersUI() {
+    const markers = [DOM.firstReminder, DOM.secondReminder];
+    const reminderValues = [state.reminder1, state.reminder2];
+
+    reminderValues.forEach((min, index) => {
+        const marker = markers[index];
+        if (marker) {
+            const percent = getReminderPercentage(min);
+            // Jeśli percent jest > 0, pokaż marker
+            if (min > 0 && percent > 0 && percent <= 100) {
+                marker.style.left = `${percent}%`;
+                marker.classList.remove("hidden");
+            } else {
+                marker.classList.add("hidden");
+            }
+        }
+    });
 }
 
 export function updateAccessibility(data){

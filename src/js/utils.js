@@ -4,6 +4,18 @@ export function getVisibleSection(){
     return children.find(child => !child.classList.contains("hidden"));
 }
 
+export function parseTimeToSeconds(timeStr) {
+    if (!timeStr) return 0;
+    const [hrs, mins] = timeStr.split(':').map(val => parseInt(val, 10) || 0);
+    return (hrs * 3600) + (mins * 60);
+}
+
+export function formatSecondsToTime(totalSeconds) {
+    const h = Math.floor(totalSeconds / 3600);
+    const min = Math.floor((totalSeconds % 3600) / 60);
+    const s = totalSeconds % 60;
+    return [h, min, s].map(v => v.toString().padStart(2, '0')).join(':');
+}
 
 export function createContrastColor(hex) {
     const r = parseInt(hex.slice(1, 3), 16) / 255;
