@@ -1,13 +1,13 @@
 {
   "settings": {
-    "exam-name": "",
-    "centre-number": "",
-    "1st-reminder": "",
-    "2nd-reminder": ""
+    "exam-name": "IELTS PB",
+    "centre-number": "PL002",
+    "1st-reminder": "29",
+    "2nd-reminder": "5"
   },
   "accessibility": {
     "hour-mode": false,
-    "dark-mode": false,
+    "dark-mode": true,
     "accent-color": "#F27938"
   },
   "timers": []
