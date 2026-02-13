@@ -30,10 +30,11 @@ function startInterval(HTML, progress_bar, reminders) {
             remainingTime--;
             updateProgressBar(progress_bar);
             renderTime(HTML);
-
-            for(let r of reminders){
-                if((r*60) === remainingTime){
-                    showReminderPopup(r);
+            if(reminders){
+                for(let r of reminders){
+                    if((r*60) === remainingTime){
+                        showReminderPopup(r);
+                    }
                 }
             }
         }
@@ -42,7 +43,6 @@ function startInterval(HTML, progress_bar, reminders) {
 
 export function startTimer(countdown, HTML, progress_bar, reminders){
     fullTime = parseTimeToSeconds(countdown);
-
     if (remainingTime === 0) {
         remainingTime = fullTime;
     }
@@ -73,6 +73,7 @@ export function endTimer(HTML, progress_bar, icon){
     remainingTime = 0;
     progress_bar.style.width = '0%';
     HTML.innerHTML = '00:00:00';
+
 
     showReminderPopup(-1);
     toggleClasses(icon, 'fa-stop', 'fa-arrow-rotate-right');

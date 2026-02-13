@@ -169,15 +169,15 @@ npm run build    # Builds the application for distribution
 
 ## 🐛 Known Issues
 
-- [] Navigating back to the timer from the home screen while it's active may incorrectly display the "Pause" button while the timer is actually paused.
+- *Nothing here ;)*
 ---
 
 ## 📋 Planned Features
 
-- [ ] Improve UX by adding keyboard interactions with timer
+- [x] Improve UX by adding keyboard interactions with timer
 - [x] More settings remembered in file 
 - [x] Code structure improvement
-- [ ] Add reminders for timer
+- [x] Add reminders for timer
 - [ ] Create history for timers
 
 ---

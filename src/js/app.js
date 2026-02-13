@@ -154,25 +154,6 @@ export function updateInfo(data){
     refreshMarkersUI();
 }
 
-export function refreshMarkersUI() {
-    const markers = [DOM.firstReminder, DOM.secondReminder];
-    const reminderValues = [state.reminder1, state.reminder2];
-
-    reminderValues.forEach((min, index) => {
-        const marker = markers[index];
-        if (marker) {
-            const percent = getReminderPercentage(min);
-            // Jeśli percent jest > 0, pokaż marker
-            if (min > 0 && percent > 0 && percent <= 100) {
-                marker.style.left = `${percent}%`;
-                marker.classList.remove("hidden");
-            } else {
-                marker.classList.add("hidden");
-            }
-        }
-    });
-}
-
 export function updateAccessibility(data){
     // hour-mode; false - 24h, true - 12h
     state.hourMode = data['hour-mode'] ? 12 : 24;
@@ -189,6 +170,25 @@ export function updateAccessibility(data){
     if(data['accent-color']){
         document.body.style.setProperty('--accent-color', data['accent-color']);
     }
+}
+
+export function refreshMarkersUI() {
+    const markers = [DOM.firstReminder, DOM.secondReminder];
+    const reminderValues = [state.reminder1, state.reminder2];
+
+    reminderValues.forEach((min, index) => {
+        const marker = markers[index];
+        if (marker) {
+            const percent = getReminderPercentage(min);
+            console.log(percent)
+            if (min > 0 && percent > 0 && percent <= 100) {
+                marker.style.left = `${percent}%`;
+                marker.classList.remove("hidden");
+            } else {
+                marker.classList.add("hidden");
+            }
+        }
+    });
 }
 
 setupTimerEvents(DOM, state);

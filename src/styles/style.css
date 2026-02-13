@@ -3,19 +3,8 @@
     --bg-color: #DFD0C3;
     --sec-color: #F8E9DC;
     --font-color: #121212;
-    --sec-font-color: #404040;
+    --sec-font-color: #363636;
     --accent-color: #F27938;
-}
-
-* {
-    color: var(--font-color);
-    font-family: "Segoe UI", serif;
-}
-
-body {
-    background-color: var(--bg-color);
-    padding: 0;
-    margin: 0;
 }
 
 body.contrast-mode{
@@ -27,6 +16,23 @@ body.dark-mode{
     --bg-color: #121212;
     --sec-color: #404040;
     --font-color: #DFDFDF;
+    --sec-font-color: #ADADAD;
+}
+
+* {
+    color: var(--font-color);
+    font-family: "Segoe UI", serif;
+}
+
+::placeholder{
+    color: var(--sec-font-color);
+    opacity: 1;
+}
+
+body {
+    background-color: var(--bg-color);
+    padding: 0;
+    margin: 0;
 }
 
 /* The switch - the box around the slider */
@@ -66,7 +72,7 @@ body.dark-mode{
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--sec-font-color);
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 50%;
@@ -76,9 +82,6 @@ input:checked + .slider {
     background-color: var(--accent-color);
 }
 
-input:focus + .slider {
-    box-shadow: 0 0 1px var(--accent-color);
-}
 
 input:checked + .slider:before {
     -ms-transform: translateX(26px);
@@ -257,6 +260,10 @@ form > *{
     font-weight: 600;
 }
 
+input{
+    font-weight: 400;
+}
+
 .settings > form > input[type="text"],
 .settings > form > input[type="number"],
 input[type="color"] {
@@ -350,7 +357,7 @@ form > input:focus {
     border: none;
     border-radius: 24px;
     background-color: var(--bg-color);
-    color: var(--sec-font-color);
+    color: var(--font-color);
     padding: 8px 16px;
 }
 
@@ -412,7 +419,7 @@ i.fa-bell{
 .progress-bar-container {
     width: 65%;
     height: 12px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--sec-font-color);
     border-radius: 20px;
     margin-left: 3%;
     overflow: hidden;
@@ -443,6 +450,10 @@ i.fa-bell{
     cursor: pointer;
 }
 
+button:focus{
+    outline: none;
+}
+
 /* --- Reminder --- */
 #reminders{
     position: absolute;
@@ -453,6 +464,7 @@ i.fa-bell{
 
 .reminder{
     position: relative;
+    transform: translateX(-50%);
     height: 28px;
     width: 12px;
     top: -8px;
