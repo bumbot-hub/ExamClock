@@ -1,9 +1,9 @@
 import {endTimer, pauseTimer, resumeTimer, startTimer, remainingTime} from "./timer.js";
-import {toggleClasses} from "./utils.js";
+import {getVisibleSection, toggleClasses} from "./utils.js";
 import { refreshMarkersUI } from "./app.js";
 
 export function setupTimerEvents(DOM, appState){
-    const timerHandler = () => {
+    const initializeTimer = () => {
         const remindersValue= getReminders();
 
         document.getElementsByClassName("timer-nav")[0].classList.remove("hidden");
@@ -11,11 +11,22 @@ export function setupTimerEvents(DOM, appState){
         DOM.componentField.innerHTML = DOM.componentInput.value;
 
         startTimer(DOM.countdownInput.value, DOM.countdownField, DOM.progressBar, remindersValue);
-        appState.isRunning = true;
+        appState.isTimerRunning = true;
         refreshMarkersUI();
 
         DOM.popups.classList.add("hidden");
         DOM.popups.children[0].classList.add("hidden");
+    }
+
+    const togglePause = () => {
+        if(appState.isTimerRunning){
+            pauseTimer();
+            appState.isTimerRunning = false;
+        }else{
+            resumeTimer(DOM.countdownField, DOM.progressBar);
+        }
+        toggleClasses(DOM.playPauseBtn, 'fa-pause', 'fa-play');
+        appState.isTimerRunning = !appState.isTimerRunning;
     }
 
     DOM.timerBtn.addEventListener("click", () => {
@@ -29,29 +40,42 @@ export function setupTimerEvents(DOM, appState){
     });
 
     DOM.startTimerBtn.addEventListener("click", () => {
-        timerHandler();
+        initializeTimer();
     });
 
     DOM.componentInput.addEventListener("keydown", (event) => {
         if(event.code === "Enter"){
             event.preventDefault();
-            timerHandler();
+            initializeTimer();
         }
     });
 
     DOM.playPauseBtn.addEventListener("click", () => {
-        if(appState.isRunning){
-            pauseTimer();
-        }else{
-            resumeTimer(DOM.countdownField, DOM.progressBar);
-        }
-        toggleClasses(DOM.playPauseBtn, 'fa-pause', 'fa-play');
-        appState.isRunning = !appState.isRunning;
+        togglePause();
     });
+
+    window.addEventListener("keydown", (event) => {
+        if(event.code === "Space"){
+            const currentSection = getVisibleSection();
+
+            if (currentSection.classList.contains("timer") && remainingTime > 0) {
+                event.preventDefault();
+                togglePause();
+            }
+        }
+    })
+
+    DOM.backBtn.addEventListener("click", () => {
+        console.log(appState.isTimerRunning);
+        if(appState.isTimerRunning){
+            togglePause();
+        }
+    })
 
     DOM.resetBtn.addEventListener("click", () => {
         if(DOM.resetBtn.classList.contains('fa-stop')){
             endTimer(DOM.countdownField, DOM.progressBar, DOM.resetBtn);
+            appState.isTimerRunning = false;
             Array.from(DOM.popups.children).forEach(popup => {
                 popup.classList.add("hidden");
             });

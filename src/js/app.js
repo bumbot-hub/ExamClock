@@ -1,7 +1,7 @@
 import {startClock, stopClock} from './clock.js';
 import {getVisibleSection, createContrastColor, toggleClasses} from './utils.js'
 import {setupTimerEvents} from "./timerUI.js";
-import {pauseTimer, getReminderPercentage} from "./timer.js";
+import {getReminderPercentage, pauseTimer} from "./timer.js";
 
 const DOM = {
     // Global buttons
@@ -72,12 +72,15 @@ pageChangerBtn.forEach(btn => {
     if(btn){
         btn.addEventListener("click", () => {
             const currentSection = getVisibleSection();
+            const newSection = document.querySelector(`.${btn.id}`);
+
+            if(currentSection   === newSection) return;
+
             if(currentSection){
                 state.historyStack.push(currentSection.className); //Add current section to history
                 currentSection.classList.add("hidden");
             }
 
-            const newSection = document.querySelector(`.${btn.id}`);
             if(newSection){
                 newSection.classList.remove("hidden");
                 updateHeader(newSection);
@@ -98,9 +101,6 @@ function goBack(){
     if(prevSection){
         if(!prevSection.classList.contains("clock")){
             stopClock();
-        }
-        if(!prevSection.classList.contains("timer")){
-            pauseTimer();
         }
 
         prevSection.classList.remove("hidden");
@@ -149,28 +149,23 @@ export function updateInfo(data){
         field.innerHTML = data["centre-number"] ? data["centre-number"].toString() : "";
     }
 
+    const optionalContainers = ['.exam-data', '.others'];
+    optionalContainers.forEach(selector => {
+        const containers = document.querySelector(selector);
+        containers.forEach(container => {
+            const hasContent = container.innerText.trim().length > 0;
+
+            if(hasContent){
+                container.classList.remove("hidden");
+            }else{
+                container.classList.add("hidden");
+            }
+        })
+    })
+
     state.reminder1 = Number.parseInt(data['1st-reminder'], 10) || 0;
     state.reminder2 = Number.parseInt(data['2nd-reminder'], 10) || 0;
     refreshMarkersUI();
-}
-
-export function refreshMarkersUI() {
-    const markers = [DOM.firstReminder, DOM.secondReminder];
-    const reminderValues = [state.reminder1, state.reminder2];
-
-    reminderValues.forEach((min, index) => {
-        const marker = markers[index];
-        if (marker) {
-            const percent = getReminderPercentage(min);
-            // Jeśli percent jest > 0, pokaż marker
-            if (min > 0 && percent > 0 && percent <= 100) {
-                marker.style.left = `${percent}%`;
-                marker.classList.remove("hidden");
-            } else {
-                marker.classList.add("hidden");
-            }
-        }
-    });
 }
 
 export function updateAccessibility(data){
@@ -189,6 +184,24 @@ export function updateAccessibility(data){
     if(data['accent-color']){
         document.body.style.setProperty('--accent-color', data['accent-color']);
     }
+}
+
+export function refreshMarkersUI() {
+    const markers = [DOM.firstReminder, DOM.secondReminder];
+    const reminderValues = [state.reminder1, state.reminder2];
+
+    reminderValues.forEach((min, index) => {
+        const marker = markers[index];
+        if (marker) {
+            const percent = getReminderPercentage(min);
+            if (min > 0 && percent > 0 && percent <= 100) {
+                marker.style.left = `${percent}%`;
+                marker.classList.remove("hidden");
+            } else {
+                marker.classList.add("hidden");
+            }
+        }
+    });
 }
 
 setupTimerEvents(DOM, state);
