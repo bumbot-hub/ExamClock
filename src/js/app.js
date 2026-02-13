@@ -149,6 +149,20 @@ export function updateInfo(data){
         field.innerHTML = data["centre-number"] ? data["centre-number"].toString() : "";
     }
 
+    const optionalContainers = ['.exam-data', '.others'];
+    optionalContainers.forEach(selector => {
+        const containers = document.querySelector(selector);
+        containers.forEach(container => {
+            const hasContent = container.innerText.trim().length > 0;
+
+            if(hasContent){
+                container.classList.remove("hidden");
+            }else{
+                container.classList.add("hidden");
+            }
+        })
+    })
+
     state.reminder1 = Number.parseInt(data['1st-reminder'], 10) || 0;
     state.reminder2 = Number.parseInt(data['2nd-reminder'], 10) || 0;
     refreshMarkersUI();
