@@ -11,7 +11,7 @@ export function setupTimerEvents(DOM, appState){
         DOM.componentField.innerHTML = DOM.componentInput.value;
 
         startTimer(DOM.countdownInput.value, DOM.countdownField, DOM.progressBar, remindersValue);
-        appState.isRunning = true;
+        appState.isTimerRunning = true;
         refreshMarkersUI();
 
         DOM.popups.classList.add("hidden");
@@ -19,13 +19,14 @@ export function setupTimerEvents(DOM, appState){
     }
 
     const togglePause = () => {
-        if(appState.isRunning){
+        if(appState.isTimerRunning){
             pauseTimer();
+            appState.isTimerRunning = false;
         }else{
             resumeTimer(DOM.countdownField, DOM.progressBar);
         }
         toggleClasses(DOM.playPauseBtn, 'fa-pause', 'fa-play');
-        appState.isRunning = !appState.isRunning;
+        appState.isTimerRunning = !appState.isTimerRunning;
     }
 
     DOM.timerBtn.addEventListener("click", () => {
@@ -65,7 +66,8 @@ export function setupTimerEvents(DOM, appState){
     })
 
     DOM.backBtn.addEventListener("click", () => {
-        if(appState.isRunning){
+        console.log(appState.isTimerRunning);
+        if(appState.isTimerRunning){
             togglePause();
         }
     })
@@ -73,6 +75,7 @@ export function setupTimerEvents(DOM, appState){
     DOM.resetBtn.addEventListener("click", () => {
         if(DOM.resetBtn.classList.contains('fa-stop')){
             endTimer(DOM.countdownField, DOM.progressBar, DOM.resetBtn);
+            appState.isTimerRunning = false;
             Array.from(DOM.popups.children).forEach(popup => {
                 popup.classList.add("hidden");
             });

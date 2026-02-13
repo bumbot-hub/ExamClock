@@ -1,7 +1,7 @@
 import {startClock, stopClock} from './clock.js';
 import {getVisibleSection, createContrastColor, toggleClasses} from './utils.js'
 import {setupTimerEvents} from "./timerUI.js";
-import {pauseTimer, getReminderPercentage} from "./timer.js";
+import {getReminderPercentage, pauseTimer} from "./timer.js";
 
 const DOM = {
     // Global buttons
@@ -72,12 +72,15 @@ pageChangerBtn.forEach(btn => {
     if(btn){
         btn.addEventListener("click", () => {
             const currentSection = getVisibleSection();
+            const newSection = document.querySelector(`.${btn.id}`);
+
+            if(currentSection   === newSection) return;
+
             if(currentSection){
                 state.historyStack.push(currentSection.className); //Add current section to history
                 currentSection.classList.add("hidden");
             }
 
-            const newSection = document.querySelector(`.${btn.id}`);
             if(newSection){
                 newSection.classList.remove("hidden");
                 updateHeader(newSection);
@@ -98,9 +101,6 @@ function goBack(){
     if(prevSection){
         if(!prevSection.classList.contains("clock")){
             stopClock();
-        }
-        if(!prevSection.classList.contains("timer")){
-            pauseTimer();
         }
 
         prevSection.classList.remove("hidden");
@@ -180,7 +180,6 @@ export function refreshMarkersUI() {
         const marker = markers[index];
         if (marker) {
             const percent = getReminderPercentage(min);
-            console.log(percent)
             if (min > 0 && percent > 0 && percent <= 100) {
                 marker.style.left = `${percent}%`;
                 marker.classList.remove("hidden");
